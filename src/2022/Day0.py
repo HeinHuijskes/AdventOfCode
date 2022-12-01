@@ -9,7 +9,8 @@ def getResult():
 
 def solve(data):
     # ADD SOLUTION BELOW
-    solution = ''
+    chunks = data.split('\n')
+    solution = chunks[0]
     # ADD SOLUTION ABOVE
     return solution
 
