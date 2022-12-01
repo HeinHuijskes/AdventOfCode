@@ -1,7 +1,7 @@
 import requests
 
 
-def __getData(day, year):
+def getData(day, year):
     base_url = 'https://adventofcode.com/'
     cookie = {'session': open('cookie').readline()}
 

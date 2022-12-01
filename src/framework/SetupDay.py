@@ -1,25 +1,21 @@
-from datetime import datetime
-import os
+from src.framework.Misc import getDate, getAbsolutePath
 
-absp = os.path.dirname(__file__)
-
-
-def __setupNewDay():
-    now = datetime.now().date()
-    year = now.year
-    month = now.month
-    day = now.day
-    __setupExactDay(year, month, day)
+absp = getAbsolutePath(__file__)
 
 
-def __setupExactDay(year, month, day):
+def setupNewDay():
+    day, month, year = getDate()
+    setupExactDay(year, month, day)
+
+
+def setupExactDay(year, month, day):
     if month != 12:
         exit('Wrong month, wait till december')
     elif day > 25:
         exit('Advent of code only lasts until the 25th')
 
     for i in [1, 2]:
-        filename = absp + '/../../src/' + str(year) + '/Day' + str(day) + '-' + str(i) + '.py'
+        filename = absp + '/../' + str(year) + '/Day' + str(day) + '-' + str(i) + '.py'
         try:
             file = open(filename, 'x')
             template = open(absp + '/DayTemplate', 'r')
