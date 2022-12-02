@@ -1,6 +1,6 @@
-from src.framework.RetrieveData import __getData
+from src.framework.RetrieveData import getData
 
-data = __getData({x}, {x})
+data = getData({x}, {x})
 
 
 def getResult():
