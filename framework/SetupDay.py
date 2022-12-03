@@ -1,4 +1,4 @@
-from src.framework.Misc import getDate, getAbsolutePath
+from framework.Misc import *
 import requests
 import os
 
@@ -26,7 +26,7 @@ def setupExactDay(year, month, day):
             template = open(absp + '/DayTemplate.txt', 'r')
             file.write(template.read())
         except FileExistsError:
-            print('A file  for day ' + str(day) + ' already exists, skipping')
+            print('A file for day ' + str(day) + ' already exists, skipping')
 
 
 def setupStructure(day, year, path):
@@ -36,6 +36,9 @@ def setupStructure(day, year, path):
         print('Directory already exists, skipped')
 
     try:
+        if getTimeInHours() < 6:
+            print('Data will be made available at 6:00')
+            return
         data = getData(day, year)
         file = open(path + 'data.txt', 'x')
         file.write(data)

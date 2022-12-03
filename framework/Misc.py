@@ -10,5 +10,9 @@ def getDate():
     return day, month, year
 
 
+def getTimeInHours():
+    return datetime.now().hour
+
+
 def getAbsolutePath(file):
     return os.path.dirname(file)
