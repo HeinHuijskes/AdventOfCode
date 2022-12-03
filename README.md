@@ -1,6 +1,9 @@
-# Advent of code 2022
+# Advent of code
+My solutions to different years of advent of code, as well as a small python framework that attempts to smooth out data retrieval and the code writing process.  
 
-## Requirements:
+2021 also contains a java framework, which was kindly provided by [Mathijs Vogelezang](https://github.com/Mathijs-Vogelezang).
+
+## Framework requirements
 ### Python
 Requires python 3.0 or above.
 
