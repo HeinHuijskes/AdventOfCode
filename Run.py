@@ -1,3 +1,3 @@
-from src.framework import SetupDay, Test
+from src.framework import SetupDay
 
 SetupDay.setupNewDay()
