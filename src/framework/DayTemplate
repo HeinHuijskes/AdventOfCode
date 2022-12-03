@@ -4,13 +4,12 @@ data = getData({x}, {x})
 
 
 def getResult():
-    return solve(data)
+    return solve(data.split('\n')[:-1])
 
 
 def solve(data):
     # ADD SOLUTION BELOW
-    chunks = data.split('\n')
-    solution = chunks[0]
+    solution = data[0]
     # ADD SOLUTION ABOVE
     return solution
 

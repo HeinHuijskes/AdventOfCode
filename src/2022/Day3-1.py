@@ -4,23 +4,12 @@ data = getData(3, 2022)
 
 
 def getResult():
-    return solve(data)
+    return solve(data.split('\n')[:-1])
 
 
 def solve(data):
-    # ADD SOLUTION BELOW
-    chunks = data.split('\n')[:-1]
-    value = 0
-    for chunk in chunks:
-        length = len(chunk) // 2
-        first, second = set([char for char in chunk[length:]]), set([char for char in chunk[:length]])
-        char_value = ord(first.intersection(second).pop()) - 96
-        if char_value < 0:
-            char_value += 58
-        value += char_value
-    solution = value
-    # ADD SOLUTION ABOVE
-    return solution
+    c = [ord(set(x[len(x)//2:]).intersection(set(x[:len(x)//2])).pop())-96 for x in data]
+    return sum([(lambda x: x if x > 0 else x+58)(x) for x in c])
 
 
 print(getResult())
