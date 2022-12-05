@@ -19,7 +19,7 @@ def setupExactDay(year, month, day):
     path = absp + '/../' + str(year) + '/Day' + str(day) + '/'
     setupStructure(day, year, path)
 
-    for mode in ['_normal', '_short']:
+    for mode in ['_normal', '_short', '_better']:
         try:
             filename = 'Day' + str(day) + mode + '.py'
             file = open(path + filename, 'x')
