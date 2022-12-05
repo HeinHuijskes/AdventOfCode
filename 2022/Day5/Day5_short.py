@@ -1,0 +1,46 @@
+import re as s
+
+
+def getResult():
+    data = open('data.txt', 'r').read()
+    print(solvePartOne(data))
+    print(solvePartTwo(data))
+
+
+def solvePartOne(data):
+    stacks_list, instructions = data.split('\n\n')
+    stacks_list = stacks_list.split('\n 1')[0].split('\n')
+    instructions = instructions.split('\n')[:-1]
+
+    stacks = [list() for i in range(0, (len(stacks_list[0])+5) // 4)]
+    for layer in stacks_list:
+        i = 0
+        stack = 1
+        for i in range(0, len(layer)):
+            char = layer[i]
+            if i % 4 == 0:
+                if char == '[':
+                    stacks[stack].append(layer[i+1])
+                stack += 1
+
+    for stack in stacks:
+        stack.reverse()
+
+    for instruction in instructions:
+        [x, y, z] = [int(x) for x in s.findall(r'\d+', instruction)]
+        for i in range(0, x):
+            stacks[z].append(stacks[y].pop())
+
+    result = ''
+    for stack in stacks:
+        if stack:
+            result += stack.pop()
+    return result
+
+
+def solvePartTwo(data):
+    # ADD SOLUTION BELOW
+    return data[0]
+
+
+getResult()
