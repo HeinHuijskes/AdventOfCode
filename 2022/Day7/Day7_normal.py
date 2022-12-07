@@ -112,8 +112,10 @@ def findSmallestSize(directory, minimum, lowest):
 
         file = directory[file_name]
         if file['type'] == 'dir':
+            # Find values between the minimum required amount and the lowest correct value so far
             if minimum < file['size'] < lowest:
                 lowest = file['size']
+            # Recursively look for possible lower correct values
             lowest = findSmallestSize(file, minimum, lowest)
 
     return lowest
@@ -137,7 +139,7 @@ def solvePartTwo(data):
     total_size = 70000000
     required_space = 30000000
     system_size = tree['size']
-    space_needed = required_space - (total_size - tree['size'])
+    space_needed = required_space - (total_size - system_size)
 
     return findSmallestSize(tree, space_needed, system_size)
 
