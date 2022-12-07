@@ -2,9 +2,15 @@ import json
 
 
 def getResult():
+    test_data = open('testdata.txt', 'r').read()
+    if len(test_data) > 0:
+        test_data = test_data.split('\n')[:-1]
+        print('Test answer part 1:', solvePartOne(test_data))
+        print('Test answer part 2:', solvePartTwo(test_data))
+
     data = open('data.txt', 'r').read().split('\n')[:-1]
-    print(solvePartOne(data))
-    print(solvePartTwo(data))
+    print('Answer part 1:', solvePartOne(data))
+    print('Answer part 2:', solvePartTwo(data))
 
 
 def handleCommand(path, commands):

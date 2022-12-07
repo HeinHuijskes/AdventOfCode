@@ -1,7 +1,6 @@
 from framework.Misc import *
 import requests
 import os
-import re
 
 absp = getAbsolutePath(__file__)
 
@@ -19,7 +18,7 @@ def setupExactDay(year, month, day):
 
     path = absp + '/../' + str(year) + '/Day' + str(day) + '/'
     setupStructure(day, year, path)
-    makeTests(day, year, path)
+    makeTests(path)
 
     for mode in ['_normal', '_short', '_better']:
         try:
@@ -48,7 +47,7 @@ def setupStructure(day, year, path):
         pass
 
 
-def makeTests(day, year, path):
+def makeTests(path):
     try:
         file = open(path + 'testdata.txt', 'x')
         file.write('')
