@@ -1,6 +1,7 @@
 from framework.Misc import *
 import requests
 import os
+import re
 
 absp = getAbsolutePath(__file__)
 
@@ -18,6 +19,7 @@ def setupExactDay(year, month, day):
 
     path = absp + '/../' + str(year) + '/Day' + str(day) + '/'
     setupStructure(day, year, path)
+    makeTests(day, year, path)
 
     for mode in ['_normal', '_short', '_better']:
         try:
@@ -26,29 +28,41 @@ def setupExactDay(year, month, day):
             template = open(absp + '/DayTemplate.txt', 'r')
             file.write(template.read())
         except FileExistsError:
-            print('A file for day ' + str(day) + ' already exists, skipping')
+            pass
 
 
 def setupStructure(day, year, path):
     try:
         os.mkdir(path)
     except FileExistsError:
-        print('Directory already exists, skipped')
+        pass
 
     try:
         if getTimeInHours() < 6:
             print('Data will be made available at 6:00')
             return
-        data = getData(day, year)
         file = open(path + 'data.txt', 'x')
+        data = getInputData(day, year)
         file.write(data)
     except FileExistsError:
-        print('Data already exists, skipped')
+        pass
 
 
-def getData(day, year):
+def makeTests(day, year, path):
+    try:
+        file = open(path + 'testdata.txt', 'x')
+        file.write('')
+    except FileExistsError:
+        pass
+
+
+def getInputData(day, year):
+    return getData(day, year, addition='/input')
+
+
+def getData(day, year, addition=''):
     base_url = 'https://adventofcode.com/'
     cookie = {'session': open(absp + '/cookie.txt').readline()}
 
-    r = requests.get(base_url + str(year) + '/day/' + str(day) + '/input', cookies=cookie)
+    r = requests.get(base_url + str(year) + '/day/' + str(day) + addition, cookies=cookie)
     return r.text
