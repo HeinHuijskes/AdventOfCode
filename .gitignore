@@ -1,3 +1,4 @@
-/framework/cookie.txt
+/src/common/cookie.txt
 /venv/
-/2022/Ungodly creations/*
+/src/2022/Ungodly creations/
+/out/

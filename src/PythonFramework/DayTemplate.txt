@@ -1,4 +1,4 @@
-from framework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Day%%(Day):

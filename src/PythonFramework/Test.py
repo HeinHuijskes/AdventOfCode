@@ -1,4 +1,4 @@
-from framework.Misc import getDate, getAbsolutePath
+from src.PythonFramework.Misc import getDate, getAbsolutePath
 import os
 
 absp = getAbsolutePath(__file__)

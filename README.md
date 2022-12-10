@@ -1,11 +1,11 @@
 # Advent of code
 My solutions to different years of advent of code, as well as a small python framework that attempts to smooth out data retrieval and the code writing process.  
 
-2021 also contains a java framework, which was kindly provided by [Mathijs Vogelezang](https://github.com/Mathijs-Vogelezang).
+It also contains a java framework, which was closely adapted from `Day.java` of the [version](https://github.com/Mathijs-Vogelezang/AdventOfCode/blob/master/src/main/java/common/Day.java) of [Mathijs Vogelezang](https://github.com/Mathijs-Vogelezang).
 
-## Framework requirements
+## Python framework requirements
 ### Python
-Requires python 3.0 or above.
+Requires python 3.0 or above. Probably. I have not tested it below.
 
 ### Requests package
 Install the python requests package. Use the command line instruction below, or an IDE, or a package manager.

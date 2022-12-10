@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Courtesy of Mathijs Vogelezang
- * ty Mathijs very cool
+ * Very close adaptation of the Day Class made by Mathijs Vogelezang (https://github.com/Mathijs-Vogelezang)
+ * (https://github.com/Mathijs-Vogelezang/AdventOfCode/blob/master/src/main/java/common/Day.java)
+ *
+ * ty Mathijs, very cool
  */
 public abstract class Day {
     private final List<String> lines = new ArrayList<>();
@@ -22,11 +24,11 @@ public abstract class Day {
         System.out.printf("Advent of Code %s day %s\n", year, day);
 
         if (!isTest) {
-            File input = new File(String.format("src/y%s/data/d%s_data.txt", year, day));
+            File input = new File(String.format("src/%s/Day%s/data.txt", year, day));
 
             if (!input.exists()) {
                 URL url = new URL(String.format("https://adventofcode.com/%s/day/%s/input", year, day));
-                String cookie = new Scanner(new File("src/base/cookie.txt")).nextLine(); // your personal cookie, with which you can get your personal puzzle input
+                String cookie = new Scanner(new File("src/common/cookie.txt")).nextLine(); // your personal cookie, with which you can get your personal puzzle input
                 input.createNewFile();
                 getPuzzleInput(url, input, cookie);
             } else {
@@ -43,9 +45,10 @@ public abstract class Day {
             System.out.println("\nSolution of part B:");
             System.out.println(part2(lines));
         } else {
-            File testInput = new File(String.format("src/y%s/data/d%s_test.txt", year, day));
+            File testInput = new File(String.format("src/%s/Day%s/test.txt", year, day));
             Scanner scanner = new Scanner(testInput);
 
+            // TODO: change this to fir the python framework formatting
             // Format: first two lines are test solutions taken from the website,
             // the rest of the lines are puzzle input
 

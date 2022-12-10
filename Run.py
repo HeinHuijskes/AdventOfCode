@@ -1,3 +1,3 @@
-from framework import SetupDay
+from src.PythonFramework import SetupDay
 
 SetupDay.setupNewDay()

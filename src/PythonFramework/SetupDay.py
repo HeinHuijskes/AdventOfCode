@@ -1,4 +1,4 @@
-from framework.Misc import *
+from src.PythonFramework.Misc import *
 import requests
 import os
 
@@ -20,7 +20,7 @@ def setupExactDay(year, month, day):
     setupStructure(day, year, path)
     makeTests(path)
 
-    for mode in ['_normal', '_short', '_better']:
+    for mode in ['_normal', '_better']:
         try:
             filename = 'Day' + str(day) + mode + '.py'
             file = open(path + filename, 'x')
