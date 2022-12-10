@@ -13,7 +13,7 @@ def getResult():
 def doCycle(cycle, register, result, part2=False):
     if part2:
         pixel = '.'
-        if (register - 1) <= (cycle % 40 - 1) <= (register + 1):
+        if (register - 1) <= ((cycle - 1) % 40) <= (register + 1):
             pixel = '#'
         result.append(pixel)
     elif cycle % 40 == 20:
@@ -41,6 +41,7 @@ def solvePartOne(data):
         cycle = doCycle(cycle, register, signal_strengths)
         if 'noop' not in line:
             cycle = doCycle(cycle, register, signal_strengths)
+            print(line, line.split())
             register += int(line.split(' ')[1])
 
     return sum(signal_strengths)

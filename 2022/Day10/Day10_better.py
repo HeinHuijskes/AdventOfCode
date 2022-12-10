@@ -31,8 +31,8 @@ class Day10(Day):
 
     def doCycle(self, is_part2):
         if is_part2:
-            pixel = '.'
-            if (self.register - 1) <= (self.cycle % 40 - 1) <= (self.register + 1):
+            pixel = ' '
+            if (self.register - 1) <= ((self.cycle - 1) % 40) <= (self.register + 1):
                 pixel = '█'
             self.result.append(pixel)
         elif self.cycle % 40 == 20:
