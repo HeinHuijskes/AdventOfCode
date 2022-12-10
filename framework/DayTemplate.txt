@@ -1,7 +1,7 @@
 from framework.Day import Day
 
 
-class Day10(Day):
+class Day%%(Day):
     def solvePartOne(self, data):
         return 'No part 1 solution yet'
 
@@ -9,4 +9,4 @@ class Day10(Day):
         return 'No part 2 solution yet'
 
 
-Day10().getResult()
+Day%%().getResult()

@@ -24,8 +24,10 @@ def setupExactDay(year, month, day):
         try:
             filename = 'Day' + str(day) + mode + '.py'
             file = open(path + filename, 'x')
-            template = open(absp + '/DayTemplate.txt', 'r')
-            file.write(template.read())
+            template = open(absp + '/DayTemplate.txt', 'r').read()
+            template = template.split('%%')
+            day_file = template[0] + str(day) + template[1] + str(day) + template[2]
+            file.write(day_file)
         except FileExistsError:
             pass
 
