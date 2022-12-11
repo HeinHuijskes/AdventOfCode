@@ -1,11 +1,11 @@
-package y2021;
+package year2021.Day9;
 
-import base.Day;
+import JavaFramework.Day;
 
 import java.io.IOException;
 import java.util.List;
 
-import static y2021.Utils.*;
+import static year2021.Utils.*;
 
 public class Day9 extends Day {
 

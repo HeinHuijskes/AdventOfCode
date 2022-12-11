@@ -1,9 +1,8 @@
-package y2021;
+package year2021.Day12;
 
-import base.Day;
+import JavaFramework.Day;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -91,6 +90,7 @@ public class Day12 extends Day {
 
             }
         }
+        return null;
     }
 
     @Override

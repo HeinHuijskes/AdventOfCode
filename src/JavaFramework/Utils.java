@@ -1,4 +1,4 @@
-package y2021;
+package year2021;
 
 public class Utils {
     public static final String TEXT_RESET = "\u001B[0m";

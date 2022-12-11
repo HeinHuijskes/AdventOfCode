@@ -1,4 +1,4 @@
-package base;
+package JavaFramework;
 
 import java.io.*;
 import java.net.URL;
@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Very close adaptation of the Day Class made by Mathijs Vogelezang (https://github.com/Mathijs-Vogelezang)
- * (https://github.com/Mathijs-Vogelezang/AdventOfCode/blob/master/src/main/java/common/Day.java)
- *
+ * Very close adaptation of the Day Class made by Mathijs Vogelezang (<a href="https://github.com/Mathijs-Vogelezang">...</a>)
+ * (<a href="https://github.com/Mathijs-Vogelezang/AdventOfCode/blob/master/src/main/java/common/Day.java">...</a>)
+ * <p>
  * ty Mathijs, very cool
  */
 public abstract class Day {
@@ -18,13 +18,13 @@ public abstract class Day {
 
     public Day(boolean isTest) throws IOException {
         String[] date = getClass().getName().split("[.]");
-        String year = date[0].replace("y", "");
-        String day = date[1].replace("Day", "");
+        String year = date[0];
+        String day = date[1];
 
-        System.out.printf("Advent of Code %s day %s\n", year, day);
+        System.out.printf("Advent of Code %s %s\n", year, day);
 
         if (!isTest) {
-            File input = new File(String.format("src/%s/Day%s/data.txt", year, day));
+            File input = new File(String.format("src/%s/%s/data.txt", year, day));
 
             if (!input.exists()) {
                 URL url = new URL(String.format("https://adventofcode.com/%s/day/%s/input", year, day));
@@ -45,7 +45,7 @@ public abstract class Day {
             System.out.println("\nSolution of part B:");
             System.out.println(part2(lines));
         } else {
-            File testInput = new File(String.format("src/%s/Day%s/test.txt", year, day));
+            File testInput = new File(String.format("src/%s/Day%s/test_data.txt", year, day));
             Scanner scanner = new Scanner(testInput);
 
             // TODO: change this to fir the python framework formatting

@@ -1,6 +1,6 @@
-package y2021;
+package year2021.Day6;
 
-import base.Day;
+import JavaFramework.Day;
 
 import java.io.IOException;
 import java.math.BigInteger;
