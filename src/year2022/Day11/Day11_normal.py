@@ -8,7 +8,8 @@ class Day11(Day):
         return self.solve(data, divide=3, turns=20)
 
     def solvePartTwo(self, data):
-        return self.solve(data, divide=1, turns=10000)
+        # return self.solve(data, divide=1, turns=10000)
+        return 'Make me more efficient please!'
 
     def solve(self, data, divide, turns):
         self.parseInput(data, divide=divide)
