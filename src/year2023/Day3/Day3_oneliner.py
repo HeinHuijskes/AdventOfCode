@@ -1,0 +1,16 @@
+import sys
+sys.path.append('../../../src')
+
+from PythonFramework.Day import Day
+from functools import reduce
+
+
+class Day3(Day):
+    def solvePartOne(self, data):
+        return sum([int(data[y][x:x+l]) for (x,y,l) in [(x, y, (lambda x, y: sum([x+1 < len(data[0]) and data[y][x+1].isnumeric(), x+2 < len(data[0]) and data[y][x+1].isnumeric() and data[y][x+2].isnumeric()])+1)(x,y)) for (x, y) in set(list(reduce(lambda x, y: x + y, [(lambda x, y: ([(i-sum([data[j][i-1].isnumeric(), data[j][i-1].isnumeric() and data[j][i-2].isnumeric()]), j) for i in range(x-1, x+2) for j in range(y-1, y+2) if data[j][i].isnumeric()]))(x, y) for x in range(len(data[0])) for y in range(len(data)) if not data[y][x].isnumeric() and not data[y][x] == '.'], [])))]])
+
+    def solvePartTwo(self, data):
+        return 'No part 2 solution yet'
+
+
+Day3().getResult()
