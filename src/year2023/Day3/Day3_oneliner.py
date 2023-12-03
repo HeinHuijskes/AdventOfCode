@@ -10,7 +10,7 @@ class Day3(Day):
         return sum([int(data[y][x:x+l]) for (x,y,l) in [(x, y, (lambda x, y: sum([x+1 < len(data[0]) and data[y][x+1].isnumeric(), x+2 < len(data[0]) and data[y][x+1].isnumeric() and data[y][x+2].isnumeric()])+1)(x,y)) for (x, y) in set(list(reduce(lambda x, y: x + y, [(lambda x, y: ([(i-sum([data[j][i-1].isnumeric(), data[j][i-1].isnumeric() and data[j][i-2].isnumeric()]), j) for i in range(x-1, x+2) for j in range(y-1, y+2) if data[j][i].isnumeric()]))(x, y) for x in range(len(data[0])) for y in range(len(data)) if not data[y][x].isnumeric() and not data[y][x] == '.'], [])))]])
 
     def solvePartTwo(self, data):
-        return 'No part 2 solution yet'
+        return sum([int(data[y][x:x+z])*int(data[b][a:a+c]) for [(x,y,z),(a,b,c)] in [[(x, y, sum([x+1 < len(data[0]) and data[y][x+1].isnumeric(), x+2 < len(data[0]) and data[y][x+1].isnumeric() and data[y][x+2].isnumeric()])+1) for (x, y) in gearList] for gearList in [set(entry) for entry in [(lambda x, y: ([(i-sum([data[j][i-1].isnumeric(), data[j][i-1].isnumeric() and data[j][i-2].isnumeric()]), j) for i in range(x-1, x+2) for j in range(y-1, y+2) if data[j][i].isnumeric()]))(x, y) for x in range(len(data[0])) for y in range(len(data)) if data[y][x] == '*'] if len(set(entry)) == 2]]])
 
 
 Day3().getResult()
