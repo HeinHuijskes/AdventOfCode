@@ -1,4 +1,7 @@
-from src.PythonFramework.Day import Day
+import sys
+sys.path.append('../../../src')
+
+from PythonFramework.Day import Day
 
 
 class Day%%(Day):
