@@ -136,15 +136,13 @@ class Day10(Day):
             if not visited[y][x]:
                 expandOutside(x, y, visited)
 
-        # Count and visualize pipes
-        inside = displayPipes(main_loop, visited, outside, data)
+        # displayPipes(main_loop, visited, outside, data)
 
-        return inside
+        return sum([sum([not visited[y][x] for x in range(len(visited[0]))]) for y in range(len(visited))])
     
 
 def displayPipes(main_loop, visited, outside, data):
     loop = [(x,y) for x,y,a in main_loop]
-    inside = 0
     for y in range(len(visited)):
         line = ''
         for x in range(len(visited[0])):
@@ -156,9 +154,7 @@ def displayPipes(main_loop, visited, outside, data):
                 line += ' '
             else:
                 line += '\033[1;31;40mx\033[0m'
-                inside += 1
         print(line)
-    return inside
 
 
 Day10().getResult(testOnly=False)
