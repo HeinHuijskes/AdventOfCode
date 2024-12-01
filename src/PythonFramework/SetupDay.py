@@ -26,7 +26,7 @@ def setupExactDay(year, month, day):
             file = open(path + filename, 'x')
             template = open(absp + '/DayTemplate.txt', 'r').read()
             template = template.split('%%')
-            day_file = template[0] + str(day) + template[1] + str(day) + template[2]
+            day_file = template[0] + str(day) + template[1] + str(day) + template[2] + str(day) + template[3]
             file.write(day_file)
         except FileExistsError:
             pass
