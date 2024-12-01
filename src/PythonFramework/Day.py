@@ -1,8 +1,14 @@
 import time
 
 class Day:
+    day = 0
+    location = 'src/year2025/Day'
     start_time = 0
     inter_time = 0
+
+    def __init__(self, day) -> None:
+        self.day = day
+
     def updateTime(self):
         self.inter_time = time.perf_counter() - self.start_time - self.inter_time
 
@@ -15,7 +21,7 @@ class Day:
 
     def getResult(self, testOnly = False):
         self.start_time = time.perf_counter()
-        test_data = open('testdata.txt', 'r').read()
+        test_data = open(self.location + str(self.day) + '/testdata.txt', 'r').read()
         if len(test_data) > 0:
             test_data = test_data.split('\n')[:-1]
             self.displayAnswer(1, self.solvePartOne(test_data), test=True)
@@ -23,7 +29,7 @@ class Day:
 
         if testOnly:
             return
-        data = open('data.txt', 'r').read().split('\n')[:-1]
+        data = open(self.location + str(self.day) + '/data.txt', 'r').read().split('\n')[:-1]
         self.displayAnswer(1, self.solvePartOne(data))
         self.displayAnswer(2, self.solvePartTwo(data))
         print(f'Total time: {time.perf_counter() - self.start_time} sec')
