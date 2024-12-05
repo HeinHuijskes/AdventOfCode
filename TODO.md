@@ -1,2 +1,4 @@
 ## TODO List
-- Add support functions like binary search
+- Add support functions 
+    - Binary search
+    - Grid search
