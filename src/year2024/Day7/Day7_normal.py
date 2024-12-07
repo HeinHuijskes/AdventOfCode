@@ -1,6 +1,8 @@
 import sys
 sys.path.append('../../../src')
 
+from math import log10
+
 from PythonFramework.Day import Day
 from PythonFramework.Algorithms import *
 
@@ -25,11 +27,12 @@ class Day7(Day):
             for operator in operators[1:]:
                 new_options = []
                 for option in options:
+                    if option > test_value:
+                        continue
                     new_options.append(option * operator)
                     new_options.append(option + operator)
                 options = new_options
             if test_value in options:
-                # print(f'Possible! - {test_value}')
                 result += test_value
         return result
 
@@ -42,12 +45,13 @@ class Day7(Day):
             for operator in operators[1:]:
                 new_options = []
                 for option in options:
+                    if option > test_value:
+                        continue
                     new_options.append(option * operator)
                     new_options.append(option + operator)
-                    new_options.append((int(f'{option}{operator}')))
+                    new_options.append(10**int(log10(operator)+1)*option+operator)
                 options = new_options
             if test_value in options:
-                # print(f'Possible! - {test_value}')
                 result += test_value
         return result
 
