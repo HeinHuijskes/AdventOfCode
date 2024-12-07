@@ -23,15 +23,17 @@ class Day:
         self.start_time = time.perf_counter()
         test_data = open('./testdata.txt', 'r').read()
         if len(test_data) > 0:
-            test_data = self.parse(test_data.split('\n')[:-1])
-            self.displayAnswer(1, self.solvePartOne(test_data), test=True)
-            self.displayAnswer(2, self.solvePartTwo(test_data), test=True)
+            test_data_1 = self.parse(test_data.split('\n')[:-1])
+            test_data_2 = self.parse(test_data.split('\n')[:-1])
+            self.displayAnswer(1, self.solvePartOne(test_data_1), test=True)
+            self.displayAnswer(2, self.solvePartTwo(test_data_2), test=True)
 
         if testOnly:
             return
-        data = self.parse(open('./data.txt', 'r').read().split('\n')[:-1])
-        self.displayAnswer(1, self.solvePartOne(data))
-        self.displayAnswer(2, self.solvePartTwo(data))
+        data_1 = self.parse(open('./data.txt', 'r').read().split('\n')[:-1])
+        data_2 = self.parse(open('./data.txt', 'r').read().split('\n')[:-1])
+        self.displayAnswer(1, self.solvePartOne(data_1))
+        self.displayAnswer(2, self.solvePartTwo(data_2))
         print(f'Total time: {round(time.perf_counter() - self.start_time, 4)} sec')
 
     def parse(self, data):
