@@ -6,7 +6,7 @@ class Day:
     start_time = 0
     inter_time = 0
 
-    def __init__(self, day) -> None:
+    def __init__(self, day=0) -> None:
         self.day = day
 
     def updateTime(self):

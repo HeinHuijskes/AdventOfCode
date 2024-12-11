@@ -16,4 +16,4 @@ class Day%%(Day):
         return 'No part 2 solution yet'
 
 
-Day%%(%%).getResult()
+Day%%().getResult()
