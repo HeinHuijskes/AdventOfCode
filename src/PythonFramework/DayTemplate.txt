@@ -1,0 +1,19 @@
+import sys
+sys.path.append('../../../src')
+
+from PythonFramework.Day import Day
+from PythonFramework.Algorithms import *
+
+
+class Day%%(Day):
+    def parse(self, data):
+        return data
+
+    def solvePartOne(self, data):
+        return 'No part 1 solution yet'
+
+    def solvePartTwo(self, data):
+        return 'No part 2 solution yet'
+
+
+Day%%().getResult()
