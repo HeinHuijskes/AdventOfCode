@@ -43,7 +43,7 @@ def trackMoves(moves, knots=2):
             positions[head] = ((positions[head][0] + x//divider), (positions[head][1] + y//divider))
             # display(positions)
             moveTail(positions)
-            display(positions)
+            # display(positions)
             tail_visited[positions[0]] = True
 
     return len(tail_visited)

@@ -1,64 +1,229 @@
 import os
+import json
 from time import perf_counter_ns
 from src.PythonFramework.Misc import getDate
 
-def makeTable(results):
-    seconds = ['μs', 'ms', 's']
-    lines = [['|Year'] + [f'|{day}' for day in range(1, 26)] + ['|%']]
-    lines.append([f'|---' for day in range(0, 27)])
-    years = getDate()[2] - 2015 + 1
-    for year in range(years):
-        year = 2015 + year
-        yearresults = {}
-        if f'year{year}' in results:
-            yearresults = results[f'year{year}']
-        times = []
+
+# Replace with '🌟'
+star = 'star'
+
+
+def run():
+    calculate()
+    format()
+
+
+def getJSONResults():
+    with open('speeds.json', 'r') as file:
+        return json.load(file)
+
+
+def calculate():
+    # results = calculateAllSpeeds(1)
+    results = {}
+    for year in [2022]:
+        results[year] = calculateSpeedYear(year)
+    storeAsJSON(results)
+
+
+def format():
+    results = getJSONResults()
+
+    totals = calculateCompletionTotals(results)
+    completion = formatCompletionResults(results)
+    table = makeCompletionTable(completion, totals)
+    saveCompletion(table)
+
+    totals = calculateTimeTotals(results)
+    time = formatTimeResults(results)
+    table = makeTimeTable(time, totals)
+    saveTimeResults(table)
+    return
+
+
+def formatTime(result):
+    s, m, e = '<span class="', '">`', '`</span>'
+    # 1000s, 100s, 10s, 1s, 1ms, 1μs, 0ns
+    scales = [10**12, 10**11, 10**10, 10**9, 10**6, 10**3, 1]
+    colours = ['horrendous', 'bad', 'decent', 'good', 'perfect', 'insane', 'impossible']
+    times = ['s', 'ms', 'μs', 'ns']
+    for i, scale in enumerate(scales):
+        if result >= scale:
+            if i < 3:
+                result = result * 10**(3-i)
+            result = round(result / scale, 1)
+            break
+    return s + colours[i] + m + str(result) + times[max(3, i)-3] + e
+
+
+def calculateTimeTotals(results):
+    years = {}
+    days = {}
+    for year in results:
+        if year not in years:
+            years[year] = 0
+        for day in results[year]:
+            if day not in days:
+                days[day] = 0
+            result = int(results[year][day])
+            years[year] += result
+            days[day] += result
+    print(years)
+    print(years.values())
+    print(sum(years.values()))
+    return years, days, sum(years.values())
+
+
+def calculateCompletionTotals(results):
+    years = {}
+    days = {}
+    for year in results:
+        if year not in years:
+            years[year] = 0
+        for day in results[year]:
+            if day not in days:
+                days[day] = 0
+            years[year] += 4
+            days[day] += 2
+    return years, days, sum(days.values())/25
+
+
+def formatTimeResults(results):
+    formatted = {}
+    for year in results:
+        formatted_year = []
         for day in range(1, 26):
-            if f'Day{day}' in yearresults:
-                runtime = yearresults[f"Day{day}"]
-                if runtime > 10**12: # >1000 s
-                    result = f'|<span style="color:white">{round(yearresults[f"Day{day}"]/10**9, 1)} s</span>'
-                elif runtime > 10**10: # >10 s
-                    result = f'|<span style="color:red">{round(yearresults[f"Day{day}"]/10**9, 1)} s</span>'
-                elif runtime > 10**8: # >=0.1s
-                    result = f'|<span style="color:purple">{round(yearresults[f"Day{day}"]/10**9, 1)} s</span>'
-                elif runtime > 10**5: # >0.1ms
-                    result = f'|<span style="color:green">{round(yearresults[f"Day{day}"]/10**6, 1)} ms</span>'
-                elif runtime > 10**2: # >0.1μs
-                    result = f'|<span style="color:blue">{round(yearresults[f"Day{day}"]/10**3, 1)} μs</span>'
-                else: # ns
-                    result = f'|<span style="color:white">{round(yearresults[f"Day{day}"]/10**9, 1)} ns</span>'
+            if str(day) in results[year]:
+                formatted_year.append(formatTime(results[year][str(day)]))
             else:
-                result = '|-'
-            times.append(result)
-        lines.append([f'|{year}'] + times + [f'|{round((len(yearresults))/25*100, 1)}'])
+                formatted_year.append('-')
+        formatted[year] = formatted_year
+    return formatted
+
+
+def formatCompletionResults(results):
+    formatted = {}
+    for year in results:
+        formatted_year = []
+        for day in range(1, 26):
+            if str(day) in results[year]:
+                formatted_year.append(f'{star}{star}')
+            else:
+                formatted_year.append('-')
+        formatted[year] = formatted_year
+    return formatted
+
+
+def makeTimeTable(results, totals):
+    with open('style.html', 'r') as file:
+        styles = file.readlines()
+        file.close()
+    lines = [''.join(styles)]
+
+    line = [year for year in results]
+    lines.append(f'|Day|{"|".join(line)}|Total|')
+
+    line = [':-:' for i in range(len(results)+1)]
+    lines.append(f'|-:|{"|".join(line)}|')
+
+    years_totals, days_totals, total_total = totals
+    line = [formatTime(years_totals[year]) for year in results]
+    lines.append(f'|All|{"|".join(line)}|{formatTime(total_total)}|')
+
+    for day in range(25):
+        line = [results[year][day] for year in results]
+        day_total = '-'
+        if str(day+1) in days_totals:
+            day_total = formatTime(days_totals[str(day+1)])
+        lines.append(f'|{day+1}|{"|".join(line)}|{day_total}|')
+    
+    return lines
+
+
+def makeCompletionTable(results, totals):
+    with open('style.html', 'r') as file:
+        styles = file.readlines()
+        file.close()
+    lines = [''.join(styles)]
+
+    line = [year for year in results]
+    lines.append(f'|Day|{"|".join(line)}|Total|')
+
+    line = [':-:' for i in range(len(results)+1)]
+    lines.append(f'|-:|{"|".join(line)}|')
+
+    years_totals, days_totals, total_total = totals
+    line = [f'{years_totals[year]}%' for year in results]
+    lines.append(f'|%|{"|".join(line)}|{total_total}%|')
+
+    for day in range(25):
+        line = [results[year][day] for year in results]
+        day_total = '-'
+        if str(day+1) in days_totals:
+            day_total = f'{days_totals[str(day+1)]}{star}'
+        lines.append(f'|{day+1}|{"|".join(line)}|{day_total}|')
+    
+    return lines
+
+
+def saveTimeResults(results):
     with open('./speeds.md', 'w+') as file:
-        file.write('### Years completed & times\n')
-        file.write('In python, averaged over 10 runs on my laptop\n\n')
-        file.write('\n'.join([''.join(line) for line in lines]))
-        file.write(f'\n\nTotal completed: {round(sum([len(results[year]) for year in results])/(years*25)*100, 1)}%')
+        file.write(f'### Time\n')
+        file.write('In python, ran on my laptop. I _want_ to say I took the average of 10 runs, but I probaly did not.\n\n')
+        file.write('\n'.join(results))
         file.close()
 
 
-def calculateSpeeds(year='2024', specific_day='', iterations=1):
+def saveCompletion(results):
+    with open('./completion.md', 'w+') as file:
+        file.write(f'### Completion\n')
+        file.write('\n'.join(results))
+        file.close()
+
+
+def calculateSpeedDay(day, year=2024, iterations=1):
+    runtimes = []
+    for i in range(iterations):
+        start = perf_counter_ns()
+        os.system(f'cd ./src/year{year}/Day{day} && python Day{day}.py >nul')
+        end = perf_counter_ns()
+        runtimes.append(end - start)
+    result = sum(runtimes) // len(runtimes)
+    print(f'{year} day {day} [avg over {iterations} iterations]: {round(result/10**6, 3)} ms')
+    return result
+
+
+def calculateSpeedYear(year=2024, iterations=1):
     results = {}
-    dirs = [dir for dir in os.listdir('./src/') if dir.startswith('year'+year)]
-    for dir in dirs:
-        results[dir] = {}
-        days = [day for day in os.listdir(f'./src/{dir}/') if day.startswith('Day'+specific_day) and day[3:].isnumeric()]
-        for day in days:
-            if not os.path.exists(f'./src/{dir}/{day}/{day}.py'):
-                continue
-            runtimes = []
-            for i in range(iterations):
-                start = perf_counter_ns()
-                os.system(f'cd ./src/{dir}/{day} && python {day}.py >nul')
-                end = perf_counter_ns()
-                runtimes.append(end - start)
-            runtime = sum(runtimes) // len(runtimes)
-            results[dir][day] = runtime
-            print(f'{dir[4:]} {day}: {round(runtime, 1)} ns')
-    makeTable(results)
+    for day in range(1, 26):
+        if not os.path.exists(f'./src/year{year}/Day{day}/Day{day}.py'):
+            continue
+        results[day] = calculateSpeedDay(day, year, iterations)
+    return results
 
 
-calculateSpeeds(year='2024', specific_day='')
+def calculateAllSpeeds(iterations=10):
+    results = {}
+    for year in range(2015, getDate()[2]+1):
+        if not os.path.exists(f'./src/year{year}'):
+            continue
+        results[year] = calculateSpeedYear(year, iterations)
+    return results
+
+
+def storeAsJSON(data, overwrite=False):
+    with open('speeds.json', 'r') as file:
+        json_results = json.load(file)
+        file.close()
+    with open('speeds.json', 'w') as file:
+        for year in data:
+            if str(year) not in json_results:
+                json_results[str(year)] = {}
+            for day in data[year]:
+                if overwrite or not str(day) in json_results[str(year)]:
+                    json_results[str(year)][str(day)] = data[year][day]
+        file.write(json.dumps(json_results))
+        file.close()
+
+
+run()
