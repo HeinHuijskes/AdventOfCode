@@ -43,21 +43,20 @@ class Day19(Day):
                         new_options[new_pattern] = 0
                     new_options[new_pattern] += options[option]
             options = new_options
-            # print(options)
         return result
             
 
     def solvePartOne(self, data):
         patterns, designs = data
         result = 0
-        for i, design in enumerate(designs):
+        for design in designs:
             result += self.isValid(design, patterns)
         return result
 
     def solvePartTwo(self, data):
         patterns, designs = data
         result = 0
-        for i, design in enumerate(designs):
+        for design in designs:
             result += self.isMoreValid(design, patterns)
         return result
 
