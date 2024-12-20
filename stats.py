@@ -4,20 +4,24 @@ from time import perf_counter_ns
 from src.PythonFramework.Misc import getDate
 
 
-# Replace with '🌟'
-star = 'star'
+star = '🌟'
 
 
 def run():
-    calculate()
+    # calculateNew()
+    # calculate()
     format()
 
 
+# def calculateNew():
+#     results = getJSONResults()
+
+
 def calculate():
-    # results = calculateAllSpeeds(1)
-    results = {}
-    for year in []:
-        results[year] = calculateSpeedYear(year)
+    results = calculateAllSpeeds(1)
+    # results = {}
+    # for year in []:
+    #     results[year] = calculateSpeedYear(year)
     storeAsJSON(results, overwrite=False)
 
 
@@ -37,7 +41,7 @@ def format():
 
 
 def getJSONResults():
-    with open('speeds.json', 'r') as file:
+    with open('./stats/speeds.json', 'r') as file:
         return json.load(file)
 
 
@@ -68,9 +72,6 @@ def calculateTimeTotals(results):
             result = int(results[year][day])
             years[year] += result
             days[day] += result
-    print(years)
-    print(years.values())
-    print(sum(years.values()))
     return years, days, sum(years.values())
 
 
@@ -167,7 +168,7 @@ def makeCompletionTable(results, totals):
 
 
 def saveTimeResults(results):
-    with open('./speeds.md', 'w+') as file:
+    with open('./stats/speeds.md', 'w+') as file:
         file.write(f'### Time\n')
         file.write('In python, ran on my laptop. I _want_ to say I took the average of 10 runs, but I probaly did not.\n\n')
         file.write('\n'.join(results))
@@ -175,7 +176,7 @@ def saveTimeResults(results):
 
 
 def saveCompletion(results):
-    with open('./completion.md', 'w+') as file:
+    with open('./stats/completion.md', 'w+', encoding="utf-8") as file:
         file.write(f'### Completion\n')
         file.write('\n'.join(results))
         file.close()
@@ -212,10 +213,10 @@ def calculateAllSpeeds(iterations=10):
 
 
 def storeAsJSON(data, overwrite=False):
-    with open('speeds.json', 'r') as file:
+    with open('./stats/speeds.json', 'r') as file:
         json_results = json.load(file)
         file.close()
-    with open('speeds.json', 'w') as file:
+    with open('./stats/speeds.json', 'w') as file:
         for year in data:
             if str(year) not in json_results:
                 json_results[str(year)] = {}

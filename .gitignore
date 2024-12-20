@@ -3,9 +3,7 @@
 /src/year2022/Ungodly creations/
 /out/
 __pycache__/
-/speeds.md
-/speeds.json
-/completion.md
+stats/
 testdata.txt
 data.txt
 GUI/
