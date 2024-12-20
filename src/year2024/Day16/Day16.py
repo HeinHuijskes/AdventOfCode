@@ -4,21 +4,21 @@ sys.path.append('../../../src')
 import time
 
 from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+import PythonFramework.Algorithms as algs
 
 
 class Day16(Day):
     directions = [(0, -1), (0, 1), (1, 0), (-1, 0)]
 
     def parse(self, data):
-        grid = [[10 if char == '#' else 0 for char in line] for line in data]
+        grid = algs.gridify(data)
         reindeer = (1, len(grid)-2)
         goal = (len(grid[0])-2, 1)
         return grid, reindeer, goal
 
     def showPath(self, grid, path):
         directions = {(0, -1): '^', (1, 0): '>', (0, 1): 'v', (-1, 0): '<'}
-        grid = [['#' if x == 10 else ' ' for x in line] for line in grid]
+        grid = [['#' if x else ' ' for x in line] for line in grid]
         for node in path.nodes:
             grid[node.y][node.x] = directions[(node.x_dir, node.y_dir)]
         print()
@@ -79,7 +79,7 @@ class Day16(Day):
         for x_d, y_d in self.directions:
             if x_d*-1 == x_dir and y_d*-1 == y_dir:
                 continue
-            if grid[y+y_d][x+x_d] == 0:
+            if grid[y+y_d][x+x_d]:
                 neighbours.append((x+x_d, y+y_d, x_d, y_d))
         return neighbours
 

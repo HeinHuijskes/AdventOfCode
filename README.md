@@ -21,6 +21,6 @@ Run `Run.py` to generate files for the current day. Add a solution to those file
 In python, averaged over 10 runs on my laptop
 |Year|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|%
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
-|2024|76.3 ms|57.2 ms|65.3 ms|83.7 ms|93.9 ms|4.3 s|1.6 s|54.2 ms|14.0 s|61.2 ms|0.1 s|2.9 s|53.5 ms|-|-|-|-|-|-|-|-|-|-|-|-|52.0
+|2024|<span style="color:green">97.8 ms</span>|<span style="color:green">70.8 ms</span>|<span style="color:green">80.8 ms</span>|<span style="color:green">97.1 ms</span>|<span style="color:green">98.1 ms</span>|<span style="color:blue">4.2 s</span>|<span style="color:lightblue">1.6 s</span>|<span style="color:green">69.0 ms</span>|<span style="color:red">13.8 s</span>|<span style="color:green">69.6 ms</span>|<span style="color:blue">0.1 s</span>|<span style="color:blue">2.7 s</span>|<span style="color:green">67.8 ms</span>|<span style="color:blue">1.8 s</span>|<span style="color:blue">0.1 s</span>|<span style="color:red">138.7 s</span>|<span style="color:green">64.1 ms</span>|<span style="color:blue">7.5 s</span>|<span style="color:blue">2.8 s</span>|<span style="color:blue">3.3 s</span>|-|-|-|-|-|80.0
 
-Total completed: 5.2%
+Total completed: 8.0%

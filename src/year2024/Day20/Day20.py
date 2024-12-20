@@ -7,9 +7,8 @@ import PythonFramework.Algorithms as algs
 
 class Day20(Day):
     def parse(self, data):
-        start = [(x, y) for y, line in enumerate(data) for x, val in enumerate(line) if val == 'S'][0]
-        goal = [(x, y) for y, line in enumerate(data) for x, val in enumerate(line) if val == 'E'][0]
-        grid = [[False if char == '#' else True for char in line] for line in data]
+        start, goal = algs.findvalues(data, ['S', 'E'])
+        grid = algs.gridify(data)
         return grid, start, goal
     
     def getNeighbourCircle(self, cx, cy, grid, r):

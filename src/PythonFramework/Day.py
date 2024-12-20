@@ -1,4 +1,4 @@
-import PythonFramework.Algorithms as Algorithms
+import PythonFramework.Algorithms as alg
 import time
 
 class Day:
