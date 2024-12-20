@@ -13,17 +13,12 @@ def run():
     format()
 
 
-def getJSONResults():
-    with open('speeds.json', 'r') as file:
-        return json.load(file)
-
-
 def calculate():
     # results = calculateAllSpeeds(1)
     results = {}
-    for year in [2022]:
+    for year in []:
         results[year] = calculateSpeedYear(year)
-    storeAsJSON(results)
+    storeAsJSON(results, overwrite=False)
 
 
 def format():
@@ -39,6 +34,11 @@ def format():
     table = makeTimeTable(time, totals)
     saveTimeResults(table)
     return
+
+
+def getJSONResults():
+    with open('speeds.json', 'r') as file:
+        return json.load(file)
 
 
 def formatTime(result):
@@ -83,7 +83,7 @@ def calculateCompletionTotals(results):
         for day in results[year]:
             if day not in days:
                 days[day] = 0
-            years[year] += 4
+            years[year] += 2
             days[day] += 2
     return years, days, sum(days.values())/25
 
@@ -153,8 +153,8 @@ def makeCompletionTable(results, totals):
     lines.append(f'|-:|{"|".join(line)}|')
 
     years_totals, days_totals, total_total = totals
-    line = [f'{years_totals[year]}%' for year in results]
-    lines.append(f'|%|{"|".join(line)}|{total_total}%|')
+    line = [f'{years_totals[year]}/50' for year in results]
+    lines.append(f'|%|{"|".join(line)}|{total_total*2}%|')
 
     for day in range(25):
         line = [results[year][day] for year in results]
