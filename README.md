@@ -52,62 +52,61 @@ Run `Run.py` to generate files for the current day. Add a solution to those file
 ## Stats
 Love them.
 ### Completion
-|Day|2015|2019|2020|2021|2022|2023|2024|All|
-|-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|%|<span class="decent">28%</span>|<span class="bad">8%</span>|<span class="bad">0%</span>|<span class="bad">0%</span>|<span class="decent">48%</span>|<span class="decent">44%</span>|<span class="good">80%</span>|<span class="decent">8.0%</span>|
-|1|🌟🌟|🌟🌟|-|-|🌟🌟|🌟🌟|🌟🌟|10🌟|
-|2|🌟🌟|🌟🌟|-|-|🌟🌟|🌟🌟|🌟🌟|10🌟|
-|3|🌟🌟|-|-|-|🌟🌟|🌟🌟|🌟🌟|8🌟|
-|4|🌟🌟|-|-|-|🌟🌟|🌟🌟|🌟🌟|8🌟|
-|5|🌟🌟|-|-|-|🌟🌟|🌟🌟|🌟🌟|8🌟|
-|6|🌟🌟|-|-|-|🌟🌟|🌟🌟|🌟🌟|8🌟|
-|7|🌟🌟|-|-|-|🌟🌟|🌟🌟|🌟🌟|8🌟|
-|8|-|-|-|-|🌟🌟|🌟🌟|🌟🌟|6🌟|
-|9|-|-|-|-|🌟🌟|🌟🌟|🌟🌟|6🌟|
-|10|-|-|-|-|🌟🌟|🌟🌟|🌟🌟|6🌟|
-|11|-|-|-|-|🌟🌟|🌟🌟|🌟🌟|6🌟|
-|12|-|-|-|-|🌟🌟|-|🌟🌟|4🌟|
-|13|-|-|-|-|-|-|🌟🌟|2🌟|
-|14|-|-|-|-|-|-|🌟🌟|2🌟|
-|15|-|-|-|-|-|-|🌟🌟|2🌟|
-|16|-|-|-|-|-|-|🌟🌟|2🌟|
-|17|-|-|-|-|-|-|🌟🌟|2🌟|
-|18|-|-|-|-|-|-|🌟🌟|2🌟|
-|19|-|-|-|-|-|-|🌟🌟|2🌟|
-|20|-|-|-|-|-|-|🌟🌟|2🌟|
-|21|-|-|-|-|-|-|-|-|
-|22|-|-|-|-|-|-|-|-|
-|23|-|-|-|-|-|-|-|-|
-|24|-|-|-|-|-|-|-|-|
-|25|-|-|-|-|-|-|-|-|
+|Day|2015|2019|2022|2023|2024|Total|
+|-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|%|32%|16%|40%|12%|80%|3.6%|
+|1|🌟🌟|🌟🌟|🌟🌟|🌟🌟|🌟🌟|10🌟|
+|2|🌟🌟|🌟🌟|🌟🌟|🌟🌟|🌟🌟|10🌟|
+|3|🌟🌟|🌟🌟|🌟🌟|🌟🌟|🌟🌟|10🌟|
+|4|🌟🌟|🌟🌟|🌟🌟|-|🌟🌟|8🌟|
+|5|🌟🌟|-|🌟🌟|-|🌟🌟|6🌟|
+|6|🌟🌟|-|🌟🌟|-|🌟🌟|6🌟|
+|7|🌟🌟|-|🌟🌟|-|🌟🌟|6🌟|
+|8|🌟🌟|-|🌟🌟|-|🌟🌟|6🌟|
+|9|-|-|🌟🌟|-|🌟🌟|4🌟|
+|10|-|-|🌟🌟|-|🌟🌟|4🌟|
+|11|-|-|-|-|🌟🌟|2🌟|
+|12|-|-|-|-|🌟🌟|2🌟|
+|13|-|-|-|-|🌟🌟|2🌟|
+|14|-|-|-|-|🌟🌟|2🌟|
+|15|-|-|-|-|🌟🌟|2🌟|
+|16|-|-|-|-|🌟🌟|2🌟|
+|17|-|-|-|-|🌟🌟|2🌟|
+|18|-|-|-|-|🌟🌟|2🌟|
+|19|-|-|-|-|🌟🌟|2🌟|
+|20|-|-|-|-|🌟🌟|2🌟|
+|21|-|-|-|-|-|-|
+|22|-|-|-|-|-|-|
+|23|-|-|-|-|-|-|
+|24|-|-|-|-|-|-|
+|25|-|-|-|-|-|-|
 
 ### Time
-In python, ran on my laptop. I _want_ to say I took the average over 10 runs, but I did not.
-|Day|2015|2019|2020|2021|2022|2023|2024|All|
-|-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|Total|-|-|-|-|-|-|<span class="bad">`>176 s`</span>|<span class="bad">`>176 s`</span>|
-|1|-|-|-|-|-|-|<span class="perfect">`97.8 ms`</span>|<span class="perfect">`97.8 ms`</span>|
-|2|-|-|-|-|-|-|<span class="perfect">`70.8 ms`</span>|<span class="perfect">`70.8 ms`</span>|
-|3|-|-|-|-|-|-|<span class="perfect">`80.8 ms`</span>|-|
-|4|-|-|-|-|-|-|<span class="perfect">`97.1 ms`</span>|-|
-|5|-|-|-|-|-|-|<span class="perfect">`98.1 ms`</span>|-|
-|6|-|-|-|-|-|-|<span class="good">`4.2 s`</span>|-|
-|7|-|-|-|-|-|-|<span class="good">`1.6 s`</span>|-|
-|8|-|-|-|-|-|-|<span class="perfect">`69.0 ms`</span>|-|
-|9|-|-|-|-|-|-|<span class="decent">`13.8 s`</span>|-|
-|10|-|-|-|-|-|-|<span class="perfect">`69.6 ms`</span>|-|
-|11|-|-|-|-|-|-|<span class="perfect">`100 ms`</span>|-|
-|12|-|-|-|-|-|-|<span class="good">`2.7 s`</span>|-|
-|13|-|-|-|-|-|-|<span class="perfect">`67.8 ms`</span>|-|
-|14|-|-|-|-|-|-|<span class="good">`1.8 s`</span>|-|
-|15|-|-|-|-|-|-|<span class="perfect">`100 ms`</span>|-|
-|16|-|-|-|-|-|-|<span class="bad">`138.7 s`</span>|-|
-|17|-|-|-|-|-|-|<span class="perfect">`64.1 ms`</span>|-|
-|18|-|-|-|-|-|-|<span class="good">`7.5 s`</span>|-|
-|19|-|-|-|-|-|-|<span class="good">`2.8 s`</span>|-|
-|20|-|-|-|-|-|-|<span class="good">`3.3 s`</span>|-|
-|21|-|-|-|-|-|-|-|-|
-|22|-|-|-|-|-|-|-|-|
-|23|-|-|-|-|-|-|-|-|
-|24|-|-|-|-|-|-|-|-|
-|25|-|-|-|-|-|-|-|-|
+|Day|2015|2019|2022|2023|2024|Total|
+|-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|All|<span class="good">`8.9s`</span>|<span class="good">`1.6s`</span>|<span class="perfect">`696.0ms`</span>|<span class="perfect">`236.0ms`</span>|<span class="bad">`189.5s`</span>|<span class="bad">`200.9s`</span>|
+|1|<span class="perfect">`63.9ms`</span>|<span class="perfect">`67.9ms`</span>|<span class="perfect">`62.1ms`</span>|<span class="perfect">`107.9ms`</span>|<span class="perfect">`83.1ms`</span>|<span class="perfect">`384.9ms`</span>|
+|2|<span class="perfect">`67.6ms`</span>|<span class="perfect">`92.7ms`</span>|<span class="perfect">`55.5ms`</span>|<span class="perfect">`62.3ms`</span>|<span class="perfect">`63.5ms`</span>|<span class="perfect">`341.7ms`</span>|
+|3|<span class="perfect">`73.7ms`</span>|<span class="perfect">`110.5ms`</span>|<span class="perfect">`56.0ms`</span>|<span class="perfect">`65.8ms`</span>|<span class="perfect">`76.0ms`</span>|<span class="perfect">`382.0ms`</span>|
+|4|<span class="good">`4.0s`</span>|<span class="good">`1.3s`</span>|<span class="perfect">`75.9ms`</span>|-|<span class="perfect">`95.2ms`</span>|<span class="good">`5.4s`</span>|
+|5|<span class="perfect">`104.9ms`</span>|-|<span class="perfect">`58.7ms`</span>|-|<span class="perfect">`97.2ms`</span>|<span class="perfect">`260.8ms`</span>|
+|6|<span class="good">`4.4s`</span>|-|<span class="perfect">`58.6ms`</span>|-|<span class="good">`4.4s`</span>|<span class="good">`8.9s`</span>|
+|7|<span class="perfect">`65.2ms`</span>|-|<span class="perfect">`79.2ms`</span>|-|<span class="good">`1.6s`</span>|<span class="good">`1.7s`</span>|
+|8|<span class="perfect">`130.9ms`</span>|-|<span class="perfect">`85.3ms`</span>|-|<span class="perfect">`68.8ms`</span>|<span class="perfect">`285.1ms`</span>|
+|9|-|-|<span class="perfect">`109.1ms`</span>|-|<span class="decent">`13.4s`</span>|<span class="decent">`13.5s`</span>|
+|10|-|-|<span class="perfect">`55.6ms`</span>|-|<span class="perfect">`72.3ms`</span>|<span class="perfect">`127.9ms`</span>|
+|11|-|-|-|-|<span class="perfect">`133.7ms`</span>|<span class="perfect">`133.7ms`</span>|
+|12|-|-|-|-|<span class="good">`3.0s`</span>|<span class="good">`3.0s`</span>|
+|13|-|-|-|-|<span class="perfect">`66.3ms`</span>|<span class="perfect">`66.3ms`</span>|
+|14|-|-|-|-|<span class="good">`2.1s`</span>|<span class="good">`2.1s`</span>|
+|15|-|-|-|-|<span class="perfect">`134.0ms`</span>|<span class="perfect">`134.0ms`</span>|
+|16|-|-|-|-|<span class="bad">`151.2s`</span>|<span class="bad">`151.2s`</span>|
+|17|-|-|-|-|<span class="perfect">`69.4ms`</span>|<span class="perfect">`69.4ms`</span>|
+|18|-|-|-|-|<span class="good">`7.3s`</span>|<span class="good">`7.3s`</span>|
+|19|-|-|-|-|<span class="good">`2.6s`</span>|<span class="good">`2.6s`</span>|
+|20|-|-|-|-|<span class="good">`3.2s`</span>|<span class="good">`3.2s`</span>|
+|21|-|-|-|-|-|-|
+|22|-|-|-|-|-|-|
+|23|-|-|-|-|-|-|
+|24|-|-|-|-|-|-|
+|25|-|-|-|-|-|-|
