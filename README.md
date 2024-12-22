@@ -1,7 +1,5 @@
 # Advent of code
-My solutions to different years of advent of code, as well as a small python framework that attempts to smooth out data retrieval and the code writing process.  
-
-It also contains a java framework, which was closely adapted from `Day.java` of the [version](https://github.com/Mathijs-Vogelezang/AdventOfCode/blob/master/src/main/java/common/Day.java) of [Mathijs Vogelezang](https://github.com/Mathijs-Vogelezang).
+My solutions to different years of advent of code, as well as a small python framework that attempts to smooth out data retrieval and the code writing process.
 
 ## Requirements
 ### Python

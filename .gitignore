@@ -1,10 +1,6 @@
-/src/common/cookie.txt
+src/PythonFramework/cookie.txt
 /venv/
-/src/year2022/Ungodly creations/
-/out/
 __pycache__/
 stats/
-testdata.txt
-data.txt
 data/
 GUI/

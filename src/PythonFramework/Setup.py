@@ -51,7 +51,7 @@ def getInputData(day, year):
 
 def getData(day, year, addition=''):
     base_url = 'https://adventofcode.com/'
-    cookie = {'session': open(absp + '/../common/cookie.txt').readline()}
+    cookie = {'session': open(absp + './cookie.txt').readline()}
 
     r = requests.get(base_url + str(year) + '/day/' + str(day) + addition, cookies=cookie)
     return r.text
