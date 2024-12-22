@@ -63,6 +63,7 @@ def formatTime(result):
 
 
 def formatCompletion(result, tot=50):
+    return f'{result}/{tot}'
     s, m, e = '<span class="', '">', '</span>'
     colours = ['bad', 'decent', 'good', 'quitegood', 'perfect']
     scales = [0, 10, 30, 49, 50]
@@ -70,7 +71,7 @@ def formatCompletion(result, tot=50):
         if result/tot*50 <= scale:
             break
     p = f' ({round(result/tot*100, 1)}%)'
-    return s + colours[i] + m + str(result) + '/' + str(tot) + e + p
+    return s + colours[i] + m + str(result) + '/' + str(tot) + e  # + p
 
 
 def calculateTimeTotals(results):
