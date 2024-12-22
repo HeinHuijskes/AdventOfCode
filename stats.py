@@ -8,20 +8,18 @@ star = '🌟'
 
 
 def run():
-    # calculateNew()
     # calculate()
     format()
 
 
-# def calculateNew():
-#     results = getJSONResults()
-
-
 def calculate():
-    results = calculateAllSpeeds(1)
-    # results = {}
-    # for year in []:
-    #     results[year] = calculateSpeedYear(year)
+    # results = calculateAllSpeeds(1)
+    results = {}
+    for year in [2024]:
+        results[year] = {}
+        for day in [21, 22]:
+            results[year][day] = calculateSpeedDay(day, year)
+        # results[year] = calculateSpeedYear(year)
     storeAsJSON(results, overwrite=False)
 
 
@@ -30,13 +28,17 @@ def format():
 
     totals = calculateCompletionTotals(results)
     completion = formatCompletionResults(results)
-    table = makeCompletionTable(completion, totals)
-    saveCompletion(table)
+    completion_table = makeCompletionTable(completion, totals)
 
     totals = calculateTimeTotals(results)
     time = formatTimeResults(results)
-    table = makeTimeTable(time, totals)
-    saveTimeResults(table)
+    time_table = makeTimeTable(time, totals)
+    
+    with open('style.html', 'r') as file:
+        styles = file.readlines()
+        file.close()
+
+    saveFormatted(styles, time_table, completion_table)
     return
 
 
@@ -58,6 +60,17 @@ def formatTime(result):
             result = round(result / scale, 1)
             break
     return s + colours[i] + m + str(result) + times[max(3, i)-3] + e
+
+
+def formatCompletion(result, tot=50):
+    s, m, e = '<span class="', '">', '</span>'
+    colours = ['bad', 'decent', 'good', 'quitegood', 'perfect']
+    scales = [0, 10, 30, 49, 50]
+    for i, scale in enumerate(scales):
+        if result/tot*50 <= scale:
+            break
+    p = f' ({round(result/tot*100, 1)}%)'
+    return s + colours[i] + m + str(result) + '/' + str(tot) + e + p
 
 
 def calculateTimeTotals(results):
@@ -86,7 +99,8 @@ def calculateCompletionTotals(results):
                 days[day] = 0
             years[year] += 2
             days[day] += 2
-    return years, days, sum(days.values())/25
+    totalDays = (getDate()[2] - 2015 + 1)*25
+    return years, days, (sum(days.values()), totalDays*2)
 
 
 def formatTimeResults(results):
@@ -116,11 +130,7 @@ def formatCompletionResults(results):
 
 
 def makeTimeTable(results, totals):
-    with open('style.html', 'r') as file:
-        styles = file.readlines()
-        file.close()
-    lines = [''.join(styles)]
-
+    lines = []
     line = [year for year in results]
     lines.append(f'|Day|{"|".join(line)}|Total|')
 
@@ -142,20 +152,16 @@ def makeTimeTable(results, totals):
 
 
 def makeCompletionTable(results, totals):
-    with open('style.html', 'r') as file:
-        styles = file.readlines()
-        file.close()
-    lines = [''.join(styles)]
-
+    lines = []
     line = [year for year in results]
     lines.append(f'|Day|{"|".join(line)}|Total|')
 
     line = [':-:' for i in range(len(results)+1)]
     lines.append(f'|-:|{"|".join(line)}|')
 
-    years_totals, days_totals, total_total = totals
-    line = [f'{years_totals[year]}/50' for year in results]
-    lines.append(f'|%|{"|".join(line)}|{total_total*2}%|')
+    years_totals, days_totals, (stars, total_stars) = totals
+    line = [formatCompletion(years_totals[year]) for year in results]
+    lines.append(f'|%|{"|".join(line)}|{formatCompletion(stars,total_stars)}|')
 
     for day in range(25):
         line = [results[year][day] for year in results]
@@ -167,18 +173,14 @@ def makeCompletionTable(results, totals):
     return lines
 
 
-def saveTimeResults(results):
-    with open('./stats/speeds.md', 'w+') as file:
-        file.write(f'### Time\n')
+def saveFormatted(styles, times, completion):
+    with open('./stats/output.md', 'w+', encoding="utf-8") as file:
+        file.write(''.join(styles))
+        file.write(f'\n\n### Completion\n')
+        file.write('\n'.join(completion))
+        file.write(f'\n\n\n### Time\n')
         file.write('In python, ran on my laptop. I _want_ to say I took the average of 10 runs, but I probaly did not.\n\n')
-        file.write('\n'.join(results))
-        file.close()
-
-
-def saveCompletion(results):
-    with open('./stats/completion.md', 'w+', encoding="utf-8") as file:
-        file.write(f'### Completion\n')
-        file.write('\n'.join(results))
+        file.write('\n'.join(times))
         file.close()
 
 

@@ -8,14 +8,17 @@ import PythonFramework.Algorithms as algs
 class Day22(Day):
     def parse(self, data):
         return [int(x) for x in data]
+    
+    def updateSecret(self, secret):
+        secret = ((secret * 64) ^ secret) % 16777216
+        secret = (int(secret / 32 ) ^ secret) % 16777216
+        return ((secret * 2048) ^ secret) % 16777216
 
     def solvePartOne(self, data):
         result = 0
         for secret in data:
             for i in range(2000):
-                secret = ((secret * 64) ^ secret) % 16777216
-                secret = (int(secret / 32 ) ^ secret) % 16777216
-                secret = ((secret * 2048) ^ secret) % 16777216
+                secret = self.updateSecret(secret)
             result += secret
         return result
 
@@ -25,11 +28,8 @@ class Day22(Day):
             differences = []
             price = secret % 10
             for i in range(2000):
-                secret = ((secret * 64) ^ secret) % 16777216
-                secret = (int(secret / 32 ) ^ secret) % 16777216
-                secret = ((secret * 2048) ^ secret) % 16777216
-                old_price = price
-                price = secret % 10
+                secret = self.updateSecret(secret)
+                old_price, price = price, secret % 10
                 differences.append((price, price-old_price))
             buyers.append(differences)
 
@@ -52,7 +52,6 @@ class Day22(Day):
                     result += sequence_map[sequence]
             if result > highest[0]:
                 highest = (result, sequence)
-                # print(highest)
         return highest[0]
 
 
