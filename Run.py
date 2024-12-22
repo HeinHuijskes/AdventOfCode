@@ -1,4 +1,9 @@
-from src.PythonFramework import SetupDay
+from src.PythonFramework import Setup
 
-SetupDay.setupNewDay()
-# SetupDay.setupExactDay(2023, 12, 13)
+year = 2023
+day = 15
+# Setup.setupExactDay(year, day)
+# Setup.runDay(day, year)
+
+Setup.setupNewDay()
+Setup.runDay()

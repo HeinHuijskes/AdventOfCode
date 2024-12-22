@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../../../src')
+sys.path.append('../../src')
 
 from PythonFramework.Day import Day
 import PythonFramework.Algorithms as algs
@@ -16,4 +16,4 @@ class Day%%(Day):
         return 'No part 2 solution yet'
 
 
-Day%%().getResult()
+Day%%(%%).getResult(testOnly=False)

@@ -6,4 +6,5 @@ __pycache__/
 stats/
 testdata.txt
 data.txt
+data/
 GUI/
