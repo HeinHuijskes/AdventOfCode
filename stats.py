@@ -8,7 +8,7 @@ star = '🌟'
 
 
 def run():
-    calculate()
+    # calculate()
     format()
 
 
@@ -168,12 +168,13 @@ def makeCompletionTable(results, totals):
 
 def saveFormatted(styles, times, completion):
     with open('./stats/output.md', 'w+', encoding="utf-8") as file:
-        file.write(''.join(styles))
-        file.write(f'\n\n### Completion\n')
+        file.write(f'### Completion\n')
         file.write('\n'.join(completion))
         file.write(f'\n\n\n### Time\n')
         file.write('In python, ran on my laptop. I _want_ to say I took the average of 10 runs, but I probaly did not.\n\n')
         file.write('\n'.join(times))
+        file.write('\n\n\n')
+        file.write(''.join(styles))
         file.close()
 
 
