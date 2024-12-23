@@ -8,7 +8,7 @@ star = '🌟'
 
 
 def run():
-    # calculate()
+    calculate()
     format()
 
 
@@ -64,14 +64,6 @@ def formatTime(result):
 
 def formatCompletion(result, tot=50):
     return f'{result}/{tot}'
-    s, m, e = '<span class="', '">', '</span>'
-    colours = ['bad', 'decent', 'good', 'quitegood', 'perfect']
-    scales = [0, 10, 30, 49, 50]
-    for i, scale in enumerate(scales):
-        if result/tot*50 <= scale:
-            break
-    p = f' ({round(result/tot*100, 1)}%)'
-    return s + colours[i] + m + str(result) + '/' + str(tot) + e  # + p
 
 
 def calculateTimeTotals(results):
@@ -189,7 +181,7 @@ def calculateSpeedDay(day, year=2024, iterations=1):
     runtimes = []
     for i in range(iterations):
         start = perf_counter_ns()
-        os.system(f'cd ./src/year{year}/Day{day} && python Day{day}.py >nul')
+        os.system(f'cd ./src/year{year} && python Day{day}.py >nul')
         end = perf_counter_ns()
         runtimes.append(end - start)
     result = sum(runtimes) // len(runtimes)
