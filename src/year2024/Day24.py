@@ -50,13 +50,16 @@ class Day24(Day):
     def printGate(self, adder, wires):
         gatemap = {'XOR': '^', 'AND': '&', 'OR': '|', None: 'None'}
         def gate(wire):
-            if wire == None:
-                return ',  ### = ### # ###'
             wire1, gate, wire2 = wires[wire]
             return f',  {wire} = {wire1} {gatemap[gate]} {wire2}'
-        string = f'{adder[0]}, {adder[1]}, {adder[2]}'
-        for i in range(3, len(adder)):
-            string += gate(adder[i])
+        if "x" not in adder:
+            return
+        string = f'{adder["i"]}, {adder["x"]}, {adder["y"]}'
+        for i in ['z', 'x&y', 'x^y', 'ccc', 'out']:
+            if i in adder:
+                string += gate(adder[i])
+            else:
+                string += ',  ### = ### # ###'
         print(string)
 
     def printGates(self, full_adders, wires):
@@ -68,9 +71,9 @@ class Day24(Day):
             wire1, gate, wire2 = wires[out_wire]
             for adder in full_adders:
                 index = int(adder['i'])
-                abc = adder[add_index]
-                if abc == None:
+                if add_index not in adder:
                     continue
+                abc = adder[add_index]
                 if (wire1 == abc or wire2 == abc) and gate == gate_type:
                     full_adders[index][fa_index] = out_wire
                     break
@@ -80,30 +83,31 @@ class Day24(Day):
         # nr, x##, y##, z## = bbb ^ cin, aaa = x## & y##, bbb = x## ^ y##, ccc = bbb & cin, out = ccc | aaa
         swapped = []
         initial, gates, z_wires = data
-        length = len(z_wires)
-        full_adders = [{}]*len(z_wires)
-        for i, out_wire in enumerate(initial[:length]):
+        length = len(z_wires) - 1
+        full_adders = [{} for i in range(len(z_wires))]
+        for i, out_wire in enumerate(list(initial.keys())[:length]):
             full_adders[i]['x'] = out_wire
             full_adders[i]['i'] = i
-        for i, out_wire in enumerate(initial[length:]):
-            full_adders[i+length]['y'] = out_wire
-            full_adders[i+length]['i'] = i
+        for i, out_wire in enumerate(list(initial.keys())[length:]):
+            full_adders[i]['y'] = out_wire
+        full_adders[i+1]['i'] = i+1
         wires = {out_wire: (wire1, gate, wire2) for out_wire, (wire1, gate, wire2) in gates}
 
         # Add all x^y and z##=... inputs, based on x and y and z
         for out_wire in wires:
             wire1, gate, wire2 = wires[out_wire]
-            index = int(out_wire[1:])
             if out_wire.startswith('z'):
+                index = int(out_wire[1:])
                 full_adders[index]['z'] = out_wire
             if (wire1.startswith('x') or wire1.startswith('y')) and gate == 'XOR':
+                index = int(wire1[1:])
                 full_adders[index]['x^y'] = out_wire
 
         # Find incorrect zs and swap them back
         for adder in full_adders:
             z = adder['z']
             # Look at the z assignment, this should be "z## = x^y ^ cin"
-            if z == None or 'x^y' not in adder['x^y'] or adder['i'] == 0 or adder['i'] == 45:
+            if z == None or 'x^y' not in adder or 'i' not in adder or adder['i'] == 0 or adder['i'] == 45:
                 continue
             bbb = adder['x^y']
             z_gate = wires[z]
@@ -127,26 +131,25 @@ class Day24(Day):
         # Add ccc= x^y & cin inputs, based on finding x^y
         self.addInput(wires, full_adders, 'x^y', 'ccc', 'AND')
         # Add out= (x^y & cin) | x&y inputs, based on finding x&y
-        self.addInput(wires, full_adders, 'x&y', 'out', 'AND')
+        self.addInput(wires, full_adders, 'x&y', 'out', 'OR')
 
         for adder in full_adders:
-            ccc = adder['ccc']
-            if ccc != None or adder['i'] == 0 or adder['i'] == 45:
+            if 'ccc' in adder or adder['i'] == 0 or adder['i'] == 45:
                 continue
-            # ccc is None, so bbb is wrong. Find a new bbb where "z## = bbb ^ cin" and "ccc = bbb & cin"
+            # ccc is not found, so x^y is wrong. Find a new x^y where "z## = x^y ^ cin" and "ccc = x^y & cin"
             z, index = adder['z'], adder['i']
             wire1, gate, wire2 = wires[z]
             # c_out of previous adder is c_in for this adder
-            c_in = full_adders[index-1][7]
+            c_in = full_adders[index-1]['out']
             if wire1 == c_in:  # z## = bbb ^ cin
                 bbb = wire2
             else:
                 bbb = wire1 
-            wrong_bbb = adder['bbb']
+            wrong_bbb = adder['x^y']
             swapped += [bbb, wrong_bbb]
 
-        self.printGates(full_adders, wires)
-        print(f'##, x##, y##,  z## = bbb ^ cin,  aaa = x## & y##,  bbb = x## ^ y##,  ccc = bbb & cin,  out = ccc | aaa')
+        # self.printGates(full_adders, wires)
+        # print(f'##, x##, y##,  z## = bbb ^ cin,  aaa = x## & y##,  bbb = x## ^ y##,  ccc = bbb & cin,  out = ccc | aaa')
         return ','.join(sorted(swapped)) 
 
 
