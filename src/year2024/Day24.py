@@ -10,148 +10,70 @@ class Day24(Day):
         data = '\n'.join(data)
         initial, gates = data.split('\n\n')
         initial = [line.split(': ') for line in initial.split('\n')]
-        initial = {gate: val=='1' for gate, val in initial}
         gates = [line.split(' -> ') for line in gates.split('\n')]
         gates = [(gate, operation.split(' ')) for operation, gate in gates]
         z_wires = [gate[0] for gate in gates if gate[0].startswith('z')]
         return initial, gates, z_wires
-    
-    def logic(self, wire1, gate, wire2, wires):
-        wire1, wire2 = wires[wire1], wires[wire2]
-        if gate == 'AND':
-            return wire1 & wire2
-        elif gate == 'XOR':
-            return wire1 ^ wire2
-        else: # OR gate
-            return wire1 | wire2
 
     def solvePartOne(self, data):
         wires, gates, z_wires = data
-        length = len(z_wires)
-        while length > 0:
-            # print(len(gates), length)
+        logic = {'AND': (lambda x, y: x & y), 'XOR': (lambda x, y: x ^ y), 'OR': (lambda x, y: x | y)}
+        wires = {gate: val=='1' for gate, val in wires}
+        while len(gates) > 0:
             unused_gates = []
             for out_wire, (wire1, gate, wire2) in gates:
                 if wire1 in wires and wire2 in wires:
-                    wires[out_wire] = self.logic(wire1, gate, wire2, wires)
-                    if out_wire.startswith('z'):
-                        length -= 1
+                    wires[out_wire] = logic[gate](wires[wire1], wires[wire2])
                 else:
                     unused_gates.append((out_wire, (wire1, gate, wire2)))
             gates = unused_gates
+        return sum([wires[z] << i for i, z in enumerate(sorted(z_wires))])
 
-        result = 0
-        for i, z_wire in enumerate(sorted(z_wires)):
-            wire = wires[z_wire]
-            result = result ^ (wire << i)
+    def findOutputWire(self, wires, wire1, wire2, gate):
+        for output_wire in wires:
+            w1, g, w2 = wires[output_wire]
+            if g == gate and ((w1 == wire1 and w2 == wire2) or (w2 == wire1 and w1 == wire2)):
+                return output_wire
+            if wire2 == None and g == gate and (w1 == wire1 or w2 == wire1):
+                return output_wire
+            
+    def swap(self, wires, wire1, wire2, swapped, wrong):
+        swapped += [wire1, wire2]
+        w1, g, w2 = wires[wire1]
+        wires[wire1] = wires[wire2]
+        wires[wire2] = (w1, g, w2)
 
-        return result
-
-    def printGate(self, adder, wires):
-        gatemap = {'XOR': '^', 'AND': '&', 'OR': '|', None: 'None'}
-        def gate(wire):
-            wire1, gate, wire2 = wires[wire]
-            return f',  {wire} = {wire1} {gatemap[gate]} {wire2}'
-        if "x" not in adder:
-            return
-        string = f'{adder["i"]}, {adder["x"]}, {adder["y"]}'
-        for i in ['z', 'x&y', 'x^y', 'ccc', 'out']:
-            if i in adder:
-                string += gate(adder[i])
-            else:
-                string += ',  ### = ### # ###'
-        print(string)
-
-    def printGates(self, full_adders, wires):
-        for adder in full_adders:
-            self.printGate(adder, wires)
-
-    def addInput(self, wires, full_adders, add_index, fa_index, gate_type):
-        for out_wire in wires:
-            wire1, gate, wire2 = wires[out_wire]
-            for adder in full_adders:
-                index = int(adder['i'])
-                if add_index not in adder:
-                    continue
-                abc = adder[add_index]
-                if (wire1 == abc or wire2 == abc) and gate == gate_type:
-                    full_adders[index][fa_index] = out_wire
-                    break
+    def checkWires(self, wires, bbb, out, swapped, x, y, z):
+        wire1, gate, wire2 = wires[z]
+        if ((bbb != wire1 and bbb != wire2) or gate != 'XOR') and out != None:  # Something is wrong, z, bbb or cin is incorrect
+            if (out != wire1 and out != wire2) or gate != 'XOR':  # cin or the gate does not match either: z must be assigned wrong
+                actual_z = self.findOutputWire(wires, bbb, out, 'XOR')
+                self.swap(wires, actual_z, z, swapped, 'z')
+                return bbb 
+            else:  # bbb is wrong, swap with the right wire
+                if out == wire1:
+                    correct = wire2
+                else:
+                    correct = wire1
+                self.swap(wires, correct, bbb, swapped, 'x^y')
+                return correct
+        return bbb
 
     def solvePartTwo(self, data):
-        # 0   1    2    3                4                5                6                7
-        # nr, x##, y##, z## = bbb ^ cin, aaa = x## & y##, bbb = x## ^ y##, ccc = bbb & cin, out = ccc | aaa
         swapped = []
         initial, gates, z_wires = data
-        length = len(z_wires) - 1
-        full_adders = [{} for i in range(len(z_wires))]
-        for i, out_wire in enumerate(list(initial.keys())[:length]):
-            full_adders[i]['x'] = out_wire
-            full_adders[i]['i'] = i
-        for i, out_wire in enumerate(list(initial.keys())[length:]):
-            full_adders[i]['y'] = out_wire
-        full_adders[i+1]['i'] = i+1
+        initial = [x[0] for x in initial]
         wires = {out_wire: (wire1, gate, wire2) for out_wire, (wire1, gate, wire2) in gates}
-
-        # Add all x^y and z##=... inputs, based on x and y and z
-        for out_wire in wires:
-            wire1, gate, wire2 = wires[out_wire]
-            if out_wire.startswith('z'):
-                index = int(out_wire[1:])
-                full_adders[index]['z'] = out_wire
-            if (wire1.startswith('x') or wire1.startswith('y')) and gate == 'XOR':
-                index = int(wire1[1:])
-                full_adders[index]['x^y'] = out_wire
-
-        # Find incorrect zs and swap them back
-        for adder in full_adders:
-            z = adder['z']
-            # Look at the z assignment, this should be "z## = x^y ^ cin"
-            if z == None or 'x^y' not in adder or 'i' not in adder or adder['i'] == 0 or adder['i'] == 45:
-                continue
-            bbb = adder['x^y']
-            z_gate = wires[z]
-            if z_gate[1] == 'XOR' and (z_gate[0] == bbb or z_gate[2] == bbb):
-                continue
-            for out_wire in wires:
-                wire1, gate, wire2 = wires[out_wire]
-                if (wire1 == bbb or wire2 == bbb) and gate == 'XOR':
-                    wires[out_wire] = wires[z]
-                    wires[z] = (wire1, gate, wire2)
-                    swapped += [z, out_wire]
-                    break
-
-        # Add all x&y inputs, based on x and y
-        for out_wire in wires:
-            wire1, gate, wire2 = wires[out_wire]
-            if (wire1.startswith('x') or wire1.startswith('y')) and gate == 'AND':
-                index = int(wire1[1:])
-                full_adders[index]['x&y'] = out_wire
-
-        # Add ccc= x^y & cin inputs, based on finding x^y
-        self.addInput(wires, full_adders, 'x^y', 'ccc', 'AND')
-        # Add out= (x^y & cin) | x&y inputs, based on finding x&y
-        self.addInput(wires, full_adders, 'x&y', 'out', 'OR')
-
-        for adder in full_adders:
-            if 'ccc' in adder or adder['i'] == 0 or adder['i'] == 45:
-                continue
-            # ccc is not found, so x^y is wrong. Find a new x^y where "z## = x^y ^ cin" and "ccc = x^y & cin"
-            z, index = adder['z'], adder['i']
-            wire1, gate, wire2 = wires[z]
-            # c_out of previous adder is c_in for this adder
-            c_in = full_adders[index-1]['out']
-            if wire1 == c_in:  # z## = bbb ^ cin
-                bbb = wire2
-            else:
-                bbb = wire1 
-            wrong_bbb = adder['x^y']
-            swapped += [bbb, wrong_bbb]
-
-        # self.printGates(full_adders, wires)
-        # print(f'##, x##, y##,  z## = bbb ^ cin,  aaa = x## & y##,  bbb = x## ^ y##,  ccc = bbb & cin,  out = ccc | aaa')
+        out = None
+        for x in initial[:len(initial)//2]:
+            index = x[1:]
+            z, y = f'z{index}', f'y{index}'
+            bbb = self.findOutputWire(wires, x, y, 'XOR')
+            bbb = self.checkWires(wires, bbb, out, swapped, x, y, z)
+            aaa = self.findOutputWire(wires, x, y, 'AND')
+            ccc = self.findOutputWire(wires, bbb, out, 'AND')
+            out = self.findOutputWire(wires, ccc, aaa, 'OR')
         return ','.join(sorted(swapped)) 
-
 
 
 Day24(24).getResult(testOnly=False)
