@@ -2,5 +2,5 @@ src/PythonFramework/cookie.txt
 /venv/
 __pycache__/
 stats/
-data/
-GUI/
+src/data/
+src/GUI/

@@ -14,10 +14,8 @@ class Day4(Day):
             string = key+str(i)
             attempt = hashlib.md5(string.encode())
             if attempt.hexdigest()[0:5] == '00000':
-                break
-            else:
-                i += 1
-        return i
+                return i
+            i += 1
 
     def solvePartTwo(self, data):
         i = 0
@@ -26,10 +24,8 @@ class Day4(Day):
             string = key+str(i)
             attempt = hashlib.md5(string.encode())
             if attempt.hexdigest()[0:6] == '000000':
-                break
-            else:
-                i += 1
-        return i
+                return i
+            i += 1
 
 
 Day4(4).getResult()

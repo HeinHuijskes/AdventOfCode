@@ -34,7 +34,6 @@ class Day5(Day):
             for i, l in enumerate(line[:-2]):
                 if l == line[i+2]:
                     counter += 1
-                    print(line)
                     break
         return counter
 

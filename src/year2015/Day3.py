@@ -5,42 +5,23 @@ from PythonFramework.Day import Day
 
 
 class Day3(Day):
-    def solvePartOne(self, data):
-        housemap = {}
-        directions = {'^': (0, 1), '>': (1, 0), 'v': (0, -1), '<': (-1, 0)}
+    directions = {'^': (0, 1), '>': (1, 0), 'v': (0, -1), '<': (-1, 0)}
+    def move(self, housemap, data):
         x, y = 0, 0
-        for direction in data[0]:
-            i, j = directions[direction]
+        for direction in data:
+            i, j = self.directions[direction]
             x, y = x + i, y + j
-            if (x, y) in housemap.keys():
-                housemap[(x,y)] += 1
-            else:
-                housemap[(x,y)] = 1
-        return len(housemap.keys())
+            housemap[(x,y)] = True
+        return housemap
+
+    def solvePartOne(self, data):
+        return len(self.move({}, data[0]))
 
     def solvePartTwo(self, data):
-        housemap = {}
-        directions = {'^': (0, 1), '>': (1, 0), 'v': (0, -1), '<': (-1, 0)}
-        s_x, s_y, r_x, r_y = 0, 0, 0, 0
-        santasTurn = True
-        for direction in data[0]:
-            i, j = directions[direction]
-            if santasTurn:
-                x, y = s_x, s_y
-            else:
-                x, y = r_x, r_y
-            x, y = x + i, y + j
-            if (x, y) in housemap.keys():
-                housemap[(x,y)] += 1
-            else:
-                housemap[(x,y)] = 1
-                
-            if santasTurn:
-                s_x, s_y = x, y
-            else:
-                r_x, r_y = x, y
-            santasTurn = not santasTurn
-        return len(housemap.keys())
+        santa_data = [x for i, x in enumerate(data[0]) if i % 2 == 0]
+        robot_data = [x for i, x in enumerate(data[0]) if i % 2 == 1]
+        housemap = self.move({}, santa_data)
+        return len(self.move(housemap, robot_data))
 
 
 Day3(3).getResult()
