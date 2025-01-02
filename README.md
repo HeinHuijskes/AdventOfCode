@@ -22,7 +22,7 @@ Love them. No coloured formatting though, GH seems to strip it.
 ### Completion
 |Day|2015|2019|2022|2023|2024|Total|
 |-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|%|28/50|4/50|20/50|22/50|50/50|124/550|
+|%|32/50|4/50|20/50|22/50|50/50|128/550|
 |1|🌟🌟|🌟🌟|🌟🌟|🌟🌟|🌟🌟|10🌟|
 |2|🌟🌟|🌟🌟|🌟🌟|🌟🌟|🌟🌟|10🌟|
 |3|🌟🌟|-|🌟🌟|🌟🌟|🌟🌟|8🌟|
@@ -36,9 +36,9 @@ Love them. No coloured formatting though, GH seems to strip it.
 |11|🌟🌟|-|-|🌟🌟|🌟🌟|6🌟|
 |12|🌟🌟|-|-|-|🌟🌟|4🌟|
 |13|🌟🌟|-|-|-|🌟🌟|4🌟|
-|14|-|-|-|-|🌟🌟|2🌟|
-|15|-|-|-|-|🌟🌟|2🌟|
-|16|-|-|-|-|🌟🌟|2🌟|
+|14|🌟🌟|-|-|-|🌟🌟|4🌟|
+|15|🌟🌟|-|-|-|🌟🌟|4🌟|
+|16|🌟🌟|-|-|-|🌟🌟|4🌟|
 |17|-|-|-|-|🌟🌟|2🌟|
 |18|-|-|-|-|🌟🌟|2🌟|
 |19|-|-|-|-|🌟🌟|2🌟|
@@ -51,11 +51,11 @@ Love them. No coloured formatting though, GH seems to strip it.
 
 
 ### Time
-In python, ran on my laptop. I _want_ to say I took the average of 10 runs, but I probaly did not.
+In python, ran on my laptop. I _want_ to say I took the average of 10 runs, but I probably did not.
 
 |Day|2015|2019|2022|2023|2024|Total|
 |-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|All|<span class="decent">`17.7s`</span>|<span class="perfect">`160.6ms`</span>|<span class="perfect">`696.0ms`</span>|<span class="good">`5.2s`</span>|<span class="bad">`262.2s`</span>|<span class="bad">`286.0s`</span>|
+|All|<span class="decent">`18.8s`</span>|<span class="perfect">`160.6ms`</span>|<span class="perfect">`696.0ms`</span>|<span class="good">`5.2s`</span>|<span class="bad">`262.2s`</span>|<span class="bad">`287.1s`</span>|
 |1|<span class="perfect">`63.9ms`</span>|<span class="perfect">`67.9ms`</span>|<span class="perfect">`62.1ms`</span>|<span class="perfect">`107.9ms`</span>|<span class="perfect">`83.1ms`</span>|<span class="perfect">`384.9ms`</span>|
 |2|<span class="perfect">`67.6ms`</span>|<span class="perfect">`92.7ms`</span>|<span class="perfect">`55.5ms`</span>|<span class="perfect">`62.3ms`</span>|<span class="perfect">`63.5ms`</span>|<span class="perfect">`341.7ms`</span>|
 |3|<span class="perfect">`73.7ms`</span>|-|<span class="perfect">`56.0ms`</span>|<span class="perfect">`65.8ms`</span>|<span class="perfect">`76.0ms`</span>|<span class="perfect">`271.5ms`</span>|
@@ -69,9 +69,9 @@ In python, ran on my laptop. I _want_ to say I took the average of 10 runs, but 
 |11|<span class="good">`3.6s`</span>|-|-|<span class="perfect">`302.1ms`</span>|<span class="perfect">`133.7ms`</span>|<span class="good">`4.1s`</span>|
 |12|<span class="perfect">`88.3ms`</span>|-|-|-|<span class="good">`3.0s`</span>|<span class="good">`3.1s`</span>|
 |13|<span class="perfect">`873.8ms`</span>|-|-|-|<span class="perfect">`66.3ms`</span>|<span class="perfect">`940.2ms`</span>|
-|14|-|-|-|-|<span class="good">`2.1s`</span>|<span class="good">`2.1s`</span>|
-|15|-|-|-|-|<span class="perfect">`134.0ms`</span>|<span class="perfect">`134.0ms`</span>|
-|16|-|-|-|-|<span class="bad">`151.2s`</span>|<span class="bad">`151.2s`</span>|
+|14|<span class="perfect">`78.4ms`</span>|-|-|-|<span class="good">`2.1s`</span>|<span class="good">`2.1s`</span>|
+|15|<span class="good">`1.0s`</span>|-|-|-|<span class="perfect">`134.0ms`</span>|<span class="good">`1.1s`</span>|
+|16|<span class="perfect">`104.1ms`</span>|-|-|-|<span class="bad">`151.2s`</span>|<span class="bad">`151.3s`</span>|
 |17|-|-|-|-|<span class="perfect">`69.4ms`</span>|<span class="perfect">`69.4ms`</span>|
 |18|-|-|-|-|<span class="good">`7.3s`</span>|<span class="good">`7.3s`</span>|
 |19|-|-|-|-|<span class="good">`2.6s`</span>|<span class="good">`2.6s`</span>|
