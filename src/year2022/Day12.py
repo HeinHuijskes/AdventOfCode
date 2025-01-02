@@ -1,4 +1,7 @@
-from src.PythonFramework.Day import Day
+import sys
+sys.path.append('../../src')
+
+from PythonFramework.Day import Day
 
 
 class Day12(Day):
@@ -25,7 +28,7 @@ class Day12(Day):
             self.x, self.y = x, y
             self.parent = parent
 
-    def parse(self, data):
+    def parseData(self, data):
         self.width = len(data[0])
         self.height = len(data)
         for y in range(0, self.height):
@@ -77,14 +80,14 @@ class Day12(Day):
 
     def solvePartOne(self, data):
         self.reset()
-        self.parse(data)
+        self.parseData(data)
         final_node = self.breadthFirstSearch(self.root)
         return self.followPath(final_node, 0)
 
     def solvePartTwo(self, data):
         self.reset()
         best_a = 440
-        self.parse(data)
+        self.parseData(data)
         for a in self.a_positions:
             final_node = self.breadthFirstSearch(a)
             if final_node is not None:
@@ -94,4 +97,4 @@ class Day12(Day):
         return best_a
 
 
-Day12()
+Day12(12).getResult()

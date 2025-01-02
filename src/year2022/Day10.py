@@ -1,4 +1,7 @@
-from src.PythonFramework.Day import Day
+import sys
+sys.path.append('../../src')
+
+from PythonFramework.Day import Day
 
 
 class Day10(Day):
@@ -33,7 +36,7 @@ class Day10(Day):
         if is_part2:
             pixel = ' '
             if (self.register - 1) <= ((self.cycle - 1) % 40) <= (self.register + 1):
-                pixel = '█'
+                pixel = '#'
             self.result.append(pixel)
         elif self.cycle % 40 == 20:
             self.result.append(self.register * self.cycle)
@@ -46,7 +49,8 @@ class Day10(Day):
             screen += '\n'
             for w in range(0, width):
                 screen += self.result[h * width + w]
-        return screen
+        print(screen)
+        return ''
 
 
-Day10().getResult()
+Day10(10).getResult()

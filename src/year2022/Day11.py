@@ -1,4 +1,7 @@
-from src.PythonFramework.Day import Day
+import sys
+sys.path.append('../../src')
+
+from PythonFramework.Day import Day
 
 
 class Day11(Day):
@@ -8,7 +11,7 @@ class Day11(Day):
         return self.solve(data, divide=3, turns=20)
 
     def solvePartTwo(self, data):
-        # return self.solve(data, divide=1, turns=10000)
+        return self.solve(data, divide=1, turns=10000)
         return 'Make me more efficient please!'
 
     def solve(self, data, divide, turns):
@@ -88,4 +91,4 @@ class Day11(Day):
             self.items.append(item)
 
 
-Day11().getResult()
+Day11(11).getResult()
