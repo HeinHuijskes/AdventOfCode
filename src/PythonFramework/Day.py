@@ -20,24 +20,26 @@ class Day:
         else: 
             print(f'Answer {part} - {answer}   ({round(self.inter_time, decimals)} sec)')
 
-    def getResult(self, testOnly = False):
+    def getResult(self, test=False, normal=True, testOnly=False):
+        if testOnly:
+            test, normal = True, False
         year = os.getcwd()[-4:]
         data_path = f'../data/year{year}/Day{self.day}'
         self.start_time = time.perf_counter()
-        test_data = open(f'{data_path}/testdata.txt', 'r').read()
-        if len(test_data) > 0:
-            test_data_1 = self.parseTest(test_data.split('\n')[:-1])
-            test_data_2 = self.parseTest(test_data.split('\n')[:-1])
-            self.displayAnswer(1, self.solvePartOne(test_data_1), test=True)
-            self.displayAnswer(2, self.solvePartTwo(test_data_2), test=True)
+        if test:
+            test_data = open(f'{data_path}/testdata.txt', 'r').read()
+            if len(test_data) > 0:
+                test_data_1 = self.parseTest(test_data.split('\n')[:-1])
+                test_data_2 = self.parseTest(test_data.split('\n')[:-1])
+                self.displayAnswer(1, self.solvePartOne(test_data_1), test=True)
+                self.displayAnswer(2, self.solvePartTwo(test_data_2), test=True)
 
-        if testOnly:
-            return
-        data_1 = self.parse(open(f'{data_path}/data.txt', 'r').read().split('\n')[:-1])
-        data_2 = self.parse(open(f'{data_path}/data.txt', 'r').read().split('\n')[:-1])
-        self.displayAnswer(1, self.solvePartOne(data_1))
-        self.displayAnswer(2, self.solvePartTwo(data_2))
-        print(f'Total time: {round(time.perf_counter() - self.start_time, 4)} sec')
+        if normal:
+            data_1 = self.parse(open(f'{data_path}/data.txt', 'r').read().split('\n')[:-1])
+            data_2 = self.parse(open(f'{data_path}/data.txt', 'r').read().split('\n')[:-1])
+            self.displayAnswer(1, self.solvePartOne(data_1))
+            self.displayAnswer(2, self.solvePartTwo(data_2))
+            print(f'Total time: {round(time.perf_counter() - self.start_time, 4)} sec')
 
     def parse(self, data):
         return data
