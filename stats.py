@@ -167,7 +167,11 @@ def makeCompletionTable(results, totals):
 
 
 def saveFormatted(styles, times, completion):
-    with open('./stats/output.md', 'w+', encoding="utf-8") as file:
+    with open('./stats/README.md') as readme:
+        pretext = readme.read()
+        readme.close()
+    with open('./README.md', 'w+', encoding="utf-8") as file:
+        file.write(pretext)
         file.write(f'### Completion\n')
         file.write('\n'.join(completion))
         file.write(f'\n\n\n### Time\n')
