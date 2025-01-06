@@ -4,7 +4,7 @@ sys.path.append('../../src')
 from PythonFramework.Day import Day
 
 
-class Day12(Day):
+class Solver(Day):
     height_map = []
     a_positions = []
     root = None
@@ -97,4 +97,4 @@ class Day12(Day):
         return best_a
 
 
-Day12(12).getResult()
+Solver(day=12).getResult()

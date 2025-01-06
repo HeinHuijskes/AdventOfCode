@@ -13,14 +13,14 @@ def run():
 
 
 def calculate():
-    # results = calculateAllSpeeds(1)
-    results = {}
-    for year in [2015]:
-        results[year] = {}
-        for day in range(1, 17):
-            results[year][day] = calculateSpeedDay(day, year)
-        # results[year] = calculateSpeedYear(year)
-    storeAsJSON(results, overwrite=False)
+    results = calculateAllSpeeds(1)
+    # results = {}
+    # for year in [2015]:
+    #     results[year] = {}
+    #     for day in [23]:  # range(1, 17):
+    #         results[year][day] = calculateSpeedDay(day, year)
+    #     # results[year] = calculateSpeedYear(year)
+    storeAsJSON(results, overwrite=True)
 
 
 def format():
@@ -191,9 +191,10 @@ def calculateSpeedDay(day, year=2024, iterations=1):
 
 
 def calculateSpeedYear(year=2024, iterations=1):
+    print(f'Calculating {year}')
     results = {}
     for day in range(1, 26):
-        if not os.path.exists(f'./src/year{year}/Day{day}/Day{day}.py'):
+        if not os.path.exists(f'./src/year{year}/Day{day}.py'):
             continue
         results[day] = calculateSpeedDay(day, year, iterations)
     return results

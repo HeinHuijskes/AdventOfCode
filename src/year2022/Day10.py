@@ -4,7 +4,7 @@ sys.path.append('../../src')
 from PythonFramework.Day import Day
 
 
-class Day10(Day):
+class Solver(Day):
     cycle = 1
     register = 1
     result = []
@@ -53,4 +53,4 @@ class Day10(Day):
         return ''
 
 
-Day10(10).getResult()
+Solver(day=10).getResult()
