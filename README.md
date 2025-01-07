@@ -22,7 +22,7 @@ Love them. No coloured formatting though, GH seems to strip it.
 ### Completion
 |Day|2015|2019|2022|2023|2024|Total|
 |-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|%|46/50|4/50|22/50|22/50|50/50|144/550|
+|%|50/50|4/50|22/50|22/50|50/50|148/550|
 |1|🌟🌟|🌟🌟|🌟🌟|🌟🌟|🌟🌟|10🌟|
 |2|🌟🌟|🌟🌟|🌟🌟|🌟🌟|🌟🌟|10🌟|
 |3|🌟🌟|-|🌟🌟|🌟🌟|🌟🌟|8🌟|
@@ -46,8 +46,8 @@ Love them. No coloured formatting though, GH seems to strip it.
 |21|🌟🌟|-|-|-|🌟🌟|4🌟|
 |22|🌟🌟|-|-|-|🌟🌟|4🌟|
 |23|🌟🌟|-|-|-|🌟🌟|4🌟|
-|24|-|-|-|-|🌟🌟|2🌟|
-|25|-|-|-|-|🌟🌟|2🌟|
+|24|🌟🌟|-|-|-|🌟🌟|4🌟|
+|25|🌟🌟|-|-|-|🌟🌟|4🌟|
 
 
 ### Time
@@ -55,7 +55,7 @@ In python, ran on my laptop. I _want_ to say I took the average of 10 runs, but 
 
 |Day|2015|2019|2022|2023|2024|Total|
 |-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|All|<span class="bad">`393.4s`</span>|<span class="perfect">`174.7ms`</span>|<span class="good">`1.8s`</span>|<span class="good">`4.0s`</span>|<span class="bad">`254.8s`</span>|<span class="bad">`654.1s`</span>|
+|All|<span class="bad">`396.8s`</span>|<span class="perfect">`174.7ms`</span>|<span class="good">`1.8s`</span>|<span class="good">`4.0s`</span>|<span class="bad">`254.8s`</span>|<span class="bad">`657.5s`</span>|
 |1|<span class="perfect">`64.0ms`</span>|<span class="perfect">`72.4ms`</span>|<span class="perfect">`73.1ms`</span>|<span class="perfect">`160.7ms`</span>|<span class="perfect">`107.9ms`</span>|<span class="perfect">`478.1ms`</span>|
 |2|<span class="perfect">`65.7ms`</span>|<span class="perfect">`102.3ms`</span>|<span class="perfect">`72.5ms`</span>|<span class="perfect">`74.8ms`</span>|<span class="perfect">`89.6ms`</span>|<span class="perfect">`404.9ms`</span>|
 |3|<span class="perfect">`67.3ms`</span>|-|<span class="perfect">`75.4ms`</span>|<span class="perfect">`83.5ms`</span>|<span class="perfect">`103.0ms`</span>|<span class="perfect">`329.1ms`</span>|
@@ -79,8 +79,8 @@ In python, ran on my laptop. I _want_ to say I took the average of 10 runs, but 
 |21|<span class="perfect">`76.1ms`</span>|-|-|-|<span class="perfect">`88.6ms`</span>|<span class="perfect">`164.7ms`</span>|
 |22|<span class="good">`2.4s`</span>|-|-|-|<span class="decent">`18.4s`</span>|<span class="decent">`20.8s`</span>|
 |23|<span class="perfect">`61.6ms`</span>|-|-|-|<span class="decent">`51.3s`</span>|<span class="decent">`51.4s`</span>|
-|24|-|-|-|-|<span class="perfect">`107.3ms`</span>|<span class="perfect">`107.3ms`</span>|
-|25|-|-|-|-|<span class="perfect">`113.2ms`</span>|<span class="perfect">`113.2ms`</span>|
+|24|<span class="good">`1.9s`</span>|-|-|-|<span class="perfect">`107.3ms`</span>|<span class="good">`2.0s`</span>|
+|25|<span class="good">`1.5s`</span>|-|-|-|<span class="perfect">`113.2ms`</span>|<span class="good">`1.6s`</span>|
 
 
 <style>
