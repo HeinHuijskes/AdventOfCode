@@ -13,14 +13,14 @@ def run():
 
 
 def calculate():
-    results = calculateAllSpeeds(1)
-    # results = {}
-    # for year in [2015]:
-    #     results[year] = {}
-    #     for day in [23]:  # range(1, 17):
-    #         results[year][day] = calculateSpeedDay(day, year)
-    #     # results[year] = calculateSpeedYear(year)
-    storeAsJSON(results, overwrite=True)
+    # results = calculateAllSpeeds(1)
+    results = {}
+    for year in [2016]:
+        results[year] = {}
+        for day in [1, 2]:  # range(1, 17):
+            results[year][day] = calculateSpeedDay(day, year)
+        # results[year] = calculateSpeedYear(year)
+    storeAsJSON(results, overwrite=False)
 
 
 def format():
@@ -92,13 +92,15 @@ def calculateCompletionTotals(results):
                 days[day] = 0
             years[year] += 2
             days[day] += 2
-    totalDays = (getDate()[2] - 2015 + 1)*25
-    return years, days, (sum(days.values()), totalDays*2)
+    totalYears = (getDate()[2] - 2015)
+    if getDate()[1] == 12:
+        totalYears += 1
+    return years, days, (sum(days.values()), totalYears*50)
 
 
 def formatTimeResults(results):
     formatted = {}
-    for year in results:
+    for year in sorted(results.keys()):
         formatted_year = []
         for day in range(1, 26):
             if str(day) in results[year]:
@@ -111,7 +113,7 @@ def formatTimeResults(results):
 
 def formatCompletionResults(results):
     formatted = {}
-    for year in results:
+    for year in sorted(results.keys()):
         formatted_year = []
         for day in range(1, 26):
             if str(day) in results[year]:

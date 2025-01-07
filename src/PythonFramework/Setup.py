@@ -17,12 +17,16 @@ def setupExactDay(year, day, month=12):
         exit('Advent of code only lasts until the 25th')
 
     data_path = f'{absp}/../data/year{year}/Day{day}'
-    file_path = f'{absp}/../year{year}/Day{day}.py'
+    file_path = f'{absp}/../year{year}'
+    file_path_day = f'{file_path}/Day{day}.py'
     makeDataFiles(data_path, day, year)
 
     if not os.path.exists(file_path):
-        file = open(file_path, 'x')
-        template = open(absp + '/DayTemplate.txt', 'r').read()
+        os.makedirs(file_path)
+
+    if not os.path.exists(file_path_day):
+        file = open(f'{file_path_day}', 'x')
+        template = open(f'{absp}/DayTemplate.txt', 'r').read()
         template = template.replace('%%', str(day))
         file.write(template)
 
