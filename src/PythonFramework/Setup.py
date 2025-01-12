@@ -1,6 +1,8 @@
 from src.PythonFramework.Misc import *
 import requests
-import os
+import os, sys
+import importlib, importlib.util
+import src.PythonFramework.Day as Day
 
 absp = getAbsolutePath(__file__)
 
@@ -61,11 +63,17 @@ def getData(day, year, addition=''):
     return r.text
 
 
-def runDay(day=None, year=None):
+def runDay(day=None, year=None, test=False, normal=True, testOnly=False):
     d, m, y = getDate()
     if year == None:
         year = y
     if day == None:
         day = d
-    day_path = f'./src/year{year}'
-    os.system(f'cd {day_path} && python Day{day}.py')
+    day_path = f'./src/year{year}/Day{day}.py'
+    module_name = f'year{year}day{day}'
+    spec = importlib.util.spec_from_file_location(module_name, day_path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    solver: Day = module.Solver(day=day, year=year)
+    solver.getResult(test, normal, testOnly)
