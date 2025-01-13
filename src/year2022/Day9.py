@@ -1,8 +1,4 @@
-import time
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
@@ -79,6 +75,3 @@ class Solver(Day):
 
     def solvePartTwo(self, data):
         return self.trackMoves(data, knots=10)
-
-
-Solver(day=9).getResult()

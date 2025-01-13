@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Day1(Day):
@@ -34,6 +31,3 @@ class Day1(Day):
                 result += number*amount
                 checked[number] = amount
         return result
-
-
-Day1(1).getResult()

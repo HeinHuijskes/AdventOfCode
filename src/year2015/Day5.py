@@ -1,12 +1,9 @@
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
 import regex as re
 
-from PythonFramework.Day import Day
 
-
-class Day5(Day):
+class Solver(Day):
     def solvePartOne(self, data):
         counter = 0
         for line in data:
@@ -36,6 +33,3 @@ class Day5(Day):
                     counter += 1
                     break
         return counter
-
-
-Day5(5).getResult()

@@ -1,11 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
-class Day20(Day):
+class Solver(Day):
     def parse(self, data):
         return int(data[0])
     
@@ -41,6 +37,3 @@ class Day20(Day):
             if array[house-1] >= data:
                 break
         return house
-
-
-Day20(20).getResult(testOnly=False)

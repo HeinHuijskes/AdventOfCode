@@ -1,9 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-import time
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 import PythonFramework.Algorithms as algs
 
 
@@ -156,6 +151,3 @@ class Day16(Day):
             for node in path.nodes:
                 results.add((node.x, node.y))
         return len(results)
-
-
-Day16(16).getResult(testOnly=False)

@@ -1,10 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
-class Day12(Day):
+class Solver(Day):
     def assessCharacter(self, char, line, i):
         number = 0
         if char == '-' or char.isnumeric():
@@ -63,6 +60,3 @@ class Day12(Day):
                 number, i = self.assessCharacter(char, line, i)
             total += number
         return total
-
-
-Day12(12).getResult(testOnly=False)

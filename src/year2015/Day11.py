@@ -1,11 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
-class Day11(Day):
+class Solver(Day):
     cycle = 'abcdefghijklmnopqrstuvwxyz'
     def parse(self, data):
         return data[0]
@@ -56,6 +52,3 @@ class Day11(Day):
         while not self.meetsRequirements(password):
             password = self.incrementPassword(password)
         return ''.join(password)
-
-
-Day11(11).getResult(testOnly=False)

@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
@@ -27,6 +24,3 @@ class Solver(Day):
         for i in range(0, len(data)):
             if recursion(data[i:i+n]):
                 return i + n
-
-
-Solver(day=6).getResult()

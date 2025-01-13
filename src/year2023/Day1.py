@@ -1,12 +1,9 @@
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
 import regex as re
 
-from PythonFramework.Day import Day
 
-
-class Day1(Day):
+class Solver(Day):
     def solvePartOne(self, data):
         return sum([int(''.join(re.findall('[0-9]', line))[0])*10 + int(''.join(re.findall('[0-9]', line))[-1]) for line in data])
 
@@ -16,5 +13,3 @@ class Day1(Day):
         first = [nums[num[0]]*10 if num[0] in nums.keys() else int(num[0])*10 for num in numbers]
         second = [nums[num[-1]] if num[-1] in nums.keys() else int(num[-1]) for num in numbers]
         return sum([first[i] + second[i] for i in range(len(first))])
-
-Day1(1).getResult()

@@ -1,11 +1,8 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
+    answers = ['wkbvmikb', 'evakwaga']
     def parse(self, data):
         return [[data[i][j] for i in range(len(data))] for j in range(len(data[0]))]
     
@@ -30,6 +27,3 @@ class Solver(Day):
 
     def solvePartTwo(self, data):
         return self.solve(data, part2=True)
-
-
-Solver(day=6).getResult(testOnly=False)

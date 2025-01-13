@@ -1,10 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
-class Day3(Day):
+class Solver(Day):
     directions = {'^': (0, 1), '>': (1, 0), 'v': (0, -1), '<': (-1, 0)}
     def move(self, housemap, data):
         x, y = 0, 0
@@ -22,6 +19,3 @@ class Day3(Day):
         robot_data = [x for i, x in enumerate(data[0]) if i % 2 == 1]
         housemap = self.move({}, santa_data)
         return len(self.move(housemap, robot_data))
-
-
-Day3(3).getResult()

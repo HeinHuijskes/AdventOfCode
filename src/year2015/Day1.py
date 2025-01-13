@@ -1,10 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
-class Day1(Day):
+class Solver(Day):
     def solvePartOne(self, data):
         return sum([1 if x == '(' else -1 for x in data[0]])
 
@@ -16,6 +13,3 @@ class Day1(Day):
             if result < 0:
                 break
         return i + 1
-
-
-Day1(1).getResult()

@@ -6,51 +6,47 @@ from functools import reduce
 from PythonFramework.Day import Day
 
 
-def transpose(array):
-    result = [[y for y in range(len(array))] for x in range(len(array[0]))]
-    for x, row in enumerate(array):
-        for y, col in enumerate(row):
-            result[y][x] = col
-    return result
+class Solver(Day):
+    def transpose(self, array):
+        result = [[y for y in range(len(array))] for x in range(len(array[0]))]
+        for x, row in enumerate(array):
+            for y, col in enumerate(row):
+                result[y][x] = col
+        return result
 
-
-def expaaaaaand(stars):
-    for i in range(0,2):
-        result = []
-        for row in stars:
-            result.append(row)
-            if sum(row) == 0:
+    def expaaaaaand(self, stars):
+        for i in range(0,2):
+            result = []
+            for row in stars:
                 result.append(row)
-        stars = transpose(result)
-    return stars
+                if sum(row) == 0:
+                    result.append(row)
+            stars = self.transpose(result)
+        return stars
 
+    def displayStars(self, stars):
+        for row in stars:
+            line = ''
+            for col in row:
+                if col:
+                    line += '#'
+                else:
+                    line += '.'
+            print(line)
+        print()
 
-def displayStars(stars):
-    for row in stars:
-        line = ''
-        for col in row:
-            if col:
-                line += '#'
-            else:
-                line += '.'
-        print(line)
-    print()
+    def getEmpties(self, stars, cols=False):
+        if cols:
+            stars = self.transpose(stars)
+        result = []
+        for i, row in enumerate(stars):
+            if sum(row) == 0:
+                result.append(i)
+        return result
 
-
-def getEmpties(stars, cols=False):
-    if cols:
-        stars = transpose(stars)
-    result = []
-    for i, row in enumerate(stars):
-        if sum(row) == 0:
-            result.append(i)
-    return result
-
-
-class Day11(Day):
     def solvePartOne(self, data):
         stars = [[x == '#' for x in line] for line in data]
-        stars = expaaaaaand(stars)
+        stars = self.expaaaaaand(stars)
         star_duos = list(reduce(lambda a,b: a+b, [x for x in [[(x,y) for x, star in enumerate(row) if star] for y, row in enumerate(stars)] if x != []], []))
         star_duos = [[a, b] for b in star_duos for a in star_duos if a != b]
         star_duos = [abs(ax-bx)+abs(ay-by) for [(ax,ay),(bx,by)] in star_duos]
@@ -59,8 +55,8 @@ class Day11(Day):
     def solvePartTwo(self, data):
         factor = 1000000
         stars = [[x == '#' for x in line] for line in data]
-        empty_rows = getEmpties(stars)
-        empty_cols = getEmpties(stars, cols=True)
+        empty_rows = self.getEmpties(stars)
+        empty_cols = self.getEmpties(stars, cols=True)
         star_coords = list(reduce(lambda a,b: a+b, [x for x in [[(x,y) for x, star in enumerate(row) if star] for y, row in enumerate(stars)] if x != []], []))
         star_duos = []
         for i in range(len(star_coords)):
@@ -80,6 +76,3 @@ class Day11(Day):
             result.append(abs(ax-bx)-cols+cols*factor+abs(ay-by)-rows+rows*factor)
 
         return sum(result)
-
-
-Day11(11).getResult(testOnly=False)

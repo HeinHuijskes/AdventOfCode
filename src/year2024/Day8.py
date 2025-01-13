@@ -1,10 +1,6 @@
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
 import math
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
 
 
 class Day8(Day):
@@ -74,4 +70,4 @@ class Day8(Day):
         return len(antinodes)
 
 
-Day8(8).getResult(testOnly=False)
+Day8(8).getResults(testOnly=False)

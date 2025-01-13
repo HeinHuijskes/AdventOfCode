@@ -1,13 +1,9 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 from regex import regex as re
 
 
-class Day16(Day):
+class Solver(Day):
     def parse(self, data):
         items = {'children': 3, 'cats': 7, 'samoyeds': 2, 'pomeranians': 3, 'akitas': 0, 'vizslas': 0, 'goldfish': 5, 'trees': 3, 'cars': 2, 'perfumes': 1}
         Sues = [{} for i in range(500)]
@@ -49,6 +45,3 @@ class Day16(Day):
         for Sue in range(len(Sues)):
             if self.isTheRealSue(Sues, Sue, items):
                 return Sue+1
-
-
-Day16(16).getResult(testOnly=False)

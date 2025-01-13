@@ -1,10 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
-class Day6(Day):
+class Solver(Day):
     def solvePartOne(self, data):
         grid = []
         for i in range(0, 1000):
@@ -52,6 +49,3 @@ class Day6(Day):
                 for y in range(b, d+1):
                     grid[x][y] = max(0, value + grid[x][y])
         return sum([sum(row) for row in grid])
-
-
-Day6(6).getResult(testOnly=False)

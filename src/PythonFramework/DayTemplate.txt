@@ -1,11 +1,11 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
+import src.PythonFramework.Algorithms as algs
 
 
 class Solver(Day):
+    test_answers = [None, None]
+    answers = [None, None]
+
     def parse(self, data):
         return data
 

@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
 class Day21(Day):
@@ -91,6 +87,3 @@ class Day21(Day):
 
     def solvePartTwo(self, data):
         return self.solve(data, 25)
-
-
-Day21(21).getResult(testOnly=False)

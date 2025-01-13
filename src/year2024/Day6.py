@@ -1,9 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
-import time
+from src.PythonFramework.Day import Day
 
 
 class Day6(Day):
@@ -65,5 +60,3 @@ class Day6(Day):
         grid = self.getGuardRoute(data)
         route_coords = [(x,y) for y, c in enumerate(grid) for x, r in enumerate(c) if r in self.pointers and not (x == gx and y == gy)]
         return sum([self.hasLoop(gx, gy, grid, x, y) for (x, y) in route_coords])
-
-Day6(6).getResult()

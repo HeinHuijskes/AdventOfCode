@@ -1,11 +1,8 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
+    answers = [245102, 324]
     def parse(self, data):
         parsed = []
         for line in data:
@@ -50,6 +47,3 @@ class Solver(Day):
                 result += chr(cycled_letter)
             if result == 'northpoleobjectstorage':
                 return id
-
-
-Solver(day=4).getResult(testOnly=False)

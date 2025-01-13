@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Spells:
@@ -122,6 +119,3 @@ class Day22(Day):
     def solvePartTwo(self, data):
         hp, dmg = data
         return self.solve(hp, dmg, hard_mode=True)
-
-if __name__ == '__main__':
-    Day22(22).getResult(testOnly=False)

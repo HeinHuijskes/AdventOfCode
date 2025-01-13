@@ -1,7 +1,9 @@
-import os
+import os, sys
 import json
 from time import perf_counter_ns
 from src.PythonFramework.Misc import getDate
+import importlib, importlib.util
+import src.PythonFramework.Day as Day
 
 
 star = '🌟'
@@ -15,11 +17,11 @@ def run():
 def calculate():
     # results = calculateAllSpeeds(1)
     results = {}
-    for year in [2016]:
+    for year in [2015]:
         results[year] = {}
-        for day in [1, 2]:  # range(1, 17):
-            results[year][day] = calculateSpeedDay(day, year)
-        # results[year] = calculateSpeedYear(year)
+        # for day in [1, 2, 3, 4, 5, 6, 7]:  # range(1, 17):
+            # results[year][day] = calculateSpeedDay(day, year)
+        results[year] = calculateSpeedYear(year)
     storeAsJSON(results, overwrite=False)
 
 
@@ -184,16 +186,30 @@ def saveFormatted(styles, times, completion):
         file.close()
 
 
-def calculateSpeedDay(day, year=2024, iterations=1):
-    runtimes = []
+def runDayFile(day, year, iterations=1):
+    day_path = f'./src/year{year}/Day{day}.py'
+    module_name = f'year{year}day{day}'
+    spec = importlib.util.spec_from_file_location(module_name, day_path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    solver: Day = module.Solver(day=day, year=year)
+    times = []
     for i in range(iterations):
-        start = perf_counter_ns()
-        os.system(f'cd ./src/year{year} && python Day{day}.py >nul')
-        end = perf_counter_ns()
-        runtimes.append(end - start)
+        time1, correct1, _ = solver.getResult(test=False, part=1)
+        time2, correct2, _ = solver.getResult(test=False, part=2)
+        times.append(time1 + time2)
+    return times, correct1 and correct2
+
+
+def calculateSpeedDay(day, year=2024, iterations=1):
+    runtimes, correct = runDayFile(day, year, iterations)
     result = sum(runtimes) // len(runtimes)
-    print(f'{year} day {day} [avg over {iterations} iterations]: {round(result/10**6, 3)} ms')
-    return result
+    if correct:
+        print(f'{year} day {day}: {round(result/10**6, 2)} ms   [avg over {iterations} iterations]')
+    else:
+        print(f'Answer for {year} day {day} was incorrect, skipping')
+    return result, correct
 
 
 def calculateSpeedYear(year=2024, iterations=1):
@@ -202,7 +218,9 @@ def calculateSpeedYear(year=2024, iterations=1):
     for day in range(1, 26):
         if not os.path.exists(f'./src/year{year}/Day{day}.py'):
             continue
-        results[day] = calculateSpeedDay(day, year, iterations)
+        speed, correct = calculateSpeedDay(day, year, iterations)
+        if correct:
+            results[day] = speed
     return results
 
 

@@ -1,11 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
-class Day19(Day):
+class Solver(Day):
     def parse(self, data):
         medicine = data[-1]
         replacements = [line.split(' => ') for line in data[:-2]]
@@ -56,6 +52,3 @@ class Day19(Day):
                 if newEntry not in queue:
                     queue.append((steps+1, newArray))
         return steps
-
-
-Day19(19).getResult(testOnly=False, test=False)

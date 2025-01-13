@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day9(Day):
@@ -125,4 +121,4 @@ class Day9(Day):
         return sum([i*x for i, x in enumerate(data) if x != -1])
 
 
-Day9(9).getResult(testOnly=False)
+Day9(9).getResults(testOnly=False)

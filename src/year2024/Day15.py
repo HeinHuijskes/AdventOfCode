@@ -1,10 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-import time
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day15(Day):
@@ -144,6 +138,3 @@ class Day15(Day):
                 if warehouse[y][x] == '[':
                     result += y*100 + x
         return result
-
-
-Day15(15).getResult(testOnly=False)

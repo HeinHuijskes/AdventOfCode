@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day5(Day):
@@ -67,6 +63,3 @@ class Day5(Day):
                 fixed_update = self.fixUpdate(update, rules)
                 results += fixed_update[(len(fixed_update)-1)//2]
         return results
-
-
-Day5(5).getResult()

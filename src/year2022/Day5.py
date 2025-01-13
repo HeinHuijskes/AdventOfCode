@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 import re as regex
 
@@ -49,6 +46,3 @@ class Solver(Day):
             for box in list(reversed(boxes)):
                 crates[destination - 1].append(box)
         return ''.join([c.pop() for c in crates])
-
-
-Solver(day=5).getResult()

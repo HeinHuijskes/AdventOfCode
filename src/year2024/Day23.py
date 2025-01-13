@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
 class Day23(Day):
@@ -55,5 +51,3 @@ class Day23(Day):
             print(f'Round {len(list(cpu_pairs)[0])}: {len(cpu_pairs)}')
         password = ','.join(cpu_pairs.pop())
         return password
-
-Day23(23).getResult(testOnly=False)

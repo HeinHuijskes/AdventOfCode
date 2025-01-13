@@ -1,11 +1,8 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
+    answers = ['19636', '3CC43']
     directions = {'U': (0, -1), 'R': (1, 0), 'D': (0, 1), 'L': (-1, 0)}
     def parse(self, data):
         return [[self.directions[letter] for letter in line] for line in data]
@@ -30,6 +27,3 @@ class Solver(Day):
                     x, y = x+dx, y+dy
             buttons.append(str(layout[y][x]))
         return ''.join(buttons)
-
-
-Solver(day=2).getResult(testOnly=False)

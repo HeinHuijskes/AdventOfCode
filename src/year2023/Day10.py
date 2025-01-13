@@ -7,89 +7,100 @@ from functools import reduce
 from PythonFramework.Day import Day
 
 
-# Map the input direction of a curved piece to the output direction
-piecesMap = {'F': {(0,-1):(1,0),(-1,0):(0,1)}, 'L': {(0,1):(1,0),(-1,0):(0,-1)}, '7': {(0,-1):(-1,0),(1,0):(0,1)}, 'J': {(0,1):(-1,0),(1,0):(0,-1)}}
+class Solver(Day):
+    # Map the input direction of a curved piece to the output direction
+    piecesMap = {'F': {(0,-1):(1,0),(-1,0):(0,1)}, 'L': {(0,1):(1,0),(-1,0):(0,-1)}, '7': {(0,-1):(-1,0),(1,0):(0,1)}, 'J': {(0,1):(-1,0),(1,0):(0,-1)}}
 
+    def getDirection(self, piece, coords, direction):
+        # the given direction means the current direction that the considered piece lies in compared to previous ones (which is located at coords)
+        # Returned are the coordinates of the considered piece, and the new direction that it points in
+        x, y = coords
+        dx, dy = direction
+        if piece == '|' or piece == '-':
+            return (x + dx, y + dy), (dx, dy)
+        if piece in self.piecesMap.keys() and direction in self.piecesMap[piece].keys():
+            # Curved pieces choose a new direction
+            return (x + dx, y + dy), self.piecesMap[piece][direction]
+        return None, None
 
-def getDirection(piece, coords, direction):
-    # the given direction means the current direction that the considered piece lies in compared to previous ones (which is located at coords)
-    # Returned are the coordinates of the considered piece, and the new direction that it points in
-    x, y = coords
-    dx, dy = direction
-    if piece == '|' or piece == '-':
-        return (x + dx, y + dy), (dx, dy)
-    if piece in piecesMap.keys() and direction in piecesMap[piece].keys():
-        # Curved pieces choose a new direction
-        return (x + dx, y + dy), piecesMap[piece][direction]
-    return None, None
+    def getMainLoop(self, data):
+        x, y = 0, 0
+        main_loop = []
+        grid = []
+        # Find the starting piece
+        for i, line in enumerate(data):
+            grid.append([])
+            for j, pipe in enumerate(line):
+                grid[i].append(pipe)
+                if pipe == 'S':
+                    y, x = i, j
 
+        # Initialize the starting piece, this is appended later
+        start = [x,y,()]
 
-def getMainLoop(data):
-    x, y = 0, 0
-    main_loop = []
-    grid = []
-    # Find the starting piece
-    for i, line in enumerate(data):
-        grid.append([])
-        for j, pipe in enumerate(line):
-            grid[i].append(pipe)
-            if pipe == 'S':
-                y, x = i, j
-
-    # Initialize the starting piece, this is appended later
-    start = [x,y,()]
-
-    foundStart = False
-    coords, direction = None, None
-    # Find one pipe connected to the starting piece
-    for i in range(-1, 2):
-        for j in range(-1, 2):
-            if (i == j == 0) or (i != 0 and j != 0):
-                continue
-            coords, direction = getDirection(grid[y+i][x+j], (x, y), (j, i))
-            if coords != None:
-                x, y = coords
-                main_loop.append((x,y,direction))
-                foundStart = True
+        foundStart = False
+        coords, direction = None, None
+        # Find one pipe connected to the starting piece
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if (i == j == 0) or (i != 0 and j != 0):
+                    continue
+                coords, direction = self.getDirection(grid[y+i][x+j], (x, y), (j, i))
+                if coords != None:
+                    x, y = coords
+                    main_loop.append((x,y,direction))
+                    foundStart = True
+                    break
+            if foundStart:
                 break
-        if foundStart:
-            break
-    
-    piece = grid[y+direction[1]][x+direction[0]]
-    # Follow the entire path and store it in main_loop, including the coords and the direction of each piece
-    while piece != 'S':
-        (x,y), direction = getDirection(piece, (x, y), direction)
-        main_loop.append((x,y,direction))
+        
         piece = grid[y+direction[1]][x+direction[0]]
-    start[2] = (main_loop[0][0] - start[0], main_loop[0][1] - start[1])
-    main_loop.append(start)
-    return main_loop
+        # Follow the entire path and store it in main_loop, including the coords and the direction of each piece
+        while piece != 'S':
+            (x,y), direction = self.getDirection(piece, (x, y), direction)
+            main_loop.append((x,y,direction))
+            piece = grid[y+direction[1]][x+direction[0]]
+        start[2] = (main_loop[0][0] - start[0], main_loop[0][1] - start[1])
+        main_loop.append(start)
+        return main_loop
 
+    def expandOutside(self, x, y, visited):
+        # From each point outside of the main_loop, recursively find all pipes next to them that are also outside
+        # This should probably be changed to find inside pipes instead, since there are much less of those
+        visited[y][x] = True
+        if x > 0 and not visited[y][x-1]:
+            self.expandOutside(x-1, y, visited)
+        if x < len(visited[0])-1 and not visited[y][x+1]:
+            self.expandOutside(x+1, y, visited)
+        if y > 0 and not visited[y-1][x]:
+            self.expandOutside(x, y-1, visited)
+        if y < len(visited)-1 and not visited[y+1][x]:
+            self.expandOutside(x, y+1, visited)
+        return
 
-def expandOutside(x, y, visited):
-    # From each point outside of the main_loop, recursively find all pipes next to them that are also outside
-    # This should probably be changed to find inside pipes instead, since there are much less of those
-    visited[y][x] = True
-    if x > 0 and not visited[y][x-1]:
-        expandOutside(x-1, y, visited)
-    if x < len(visited[0])-1 and not visited[y][x+1]:
-        expandOutside(x+1, y, visited)
-    if y > 0 and not visited[y-1][x]:
-        expandOutside(x, y-1, visited)
-    if y < len(visited)-1 and not visited[y+1][x]:
-        expandOutside(x, y+1, visited)
-    return
+    def displayPipes(self, main_loop, visited, outside, data):
+        loop = [(x,y) for x,y,a in main_loop]
+        for y in range(len(visited)):
+            line = ''
+            for x in range(len(visited[0])):
+                if (x,y) in outside:
+                    line += '\033[1;34;40m*\033[0m'
+                elif (x,y) in loop:
+                    line += data[y][x]
+                elif visited[y][x]:
+                    line += ' '
+                else:
+                    line += '\033[1;31;40mx\033[0m'
+            print(line)
 
-
-class Day10(Day):
     def solvePartOne(self, data):
-        main_loop = getMainLoop(data)
+        main_loop = self.getMainLoop(data)
         # Half the length to get the furthest point
         return (len(main_loop))//2
 
     def solvePartTwo(self, data):
         # Initialize some values
-        main_loop = getMainLoop(data)
+        main_loop = self.getMainLoop(data)
         visited = [[False for i in range(len(data[0]))] for j in range(len(data))]
         for x, y, direction in main_loop:
             visited[y][x] = True
@@ -134,27 +145,8 @@ class Day10(Day):
         # Loop over found outside points
         for x, y in outside:
             if not visited[y][x]:
-                expandOutside(x, y, visited)
+                self.expandOutside(x, y, visited)
 
         # displayPipes(main_loop, visited, outside, data)
 
         return sum([sum([not visited[y][x] for x in range(len(visited[0]))]) for y in range(len(visited))])
-    
-
-def displayPipes(main_loop, visited, outside, data):
-    loop = [(x,y) for x,y,a in main_loop]
-    for y in range(len(visited)):
-        line = ''
-        for x in range(len(visited[0])):
-            if (x,y) in outside:
-                line += '\033[1;34;40m*\033[0m'
-            elif (x,y) in loop:
-                line += data[y][x]
-            elif visited[y][x]:
-                line += ' '
-            else:
-                line += '\033[1;31;40mx\033[0m'
-        print(line)
-
-
-Day10(10).getResult(testOnly=False)

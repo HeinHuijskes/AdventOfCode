@@ -1,12 +1,9 @@
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
 import hashlib
 
-from PythonFramework.Day import Day
 
-
-class Day4(Day):
+class Solver(Day):
     def solvePartOne(self, data):
         i = 0
         key = data[0]
@@ -26,6 +23,3 @@ class Day4(Day):
             if attempt.hexdigest()[0:6] == '000000':
                 return i
             i += 1
-
-
-Day4(4).getResult()

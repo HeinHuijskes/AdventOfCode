@@ -1,8 +1,4 @@
-import json
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
@@ -106,6 +102,3 @@ class Solver(Day):
         system_size = data['size']
         space_needed = required_space - (total_size - system_size)
         return self.findSmallestSize(data, space_needed, system_size)
-
-
-Solver(day=7).getResult()

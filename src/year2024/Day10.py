@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day10(Day):
@@ -58,4 +54,4 @@ class Day10(Day):
         return result
 
 
-Day10(10).getResult(testOnly=False)
+Day10(10).getResults(testOnly=False)

@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 def getXMAS(grid, x, y):
     dim_x, dim_y = len(grid[0]), len(grid)
@@ -49,6 +46,3 @@ class Day4(Day):
                         # 'Boolean counting', so to say
                         total += words[0] in options and words[1] in options
         return total
-
-
-Day4(4).getResult()

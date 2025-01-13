@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
 class Day24(Day):
@@ -74,6 +70,3 @@ class Day24(Day):
             ccc = self.findOutputWire(wires, bbb, out, 'AND')
             out = self.findOutputWire(wires, ccc, aaa, 'OR')
         return ','.join(sorted(swapped)) 
-
-
-Day24(24).getResult(testOnly=False)

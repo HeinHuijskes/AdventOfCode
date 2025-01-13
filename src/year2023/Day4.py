@@ -1,10 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
-class Day4(Day):
+class Solver(Day):
     def solvePartOne(self, data):
         cardWins = []
         for line in data:
@@ -29,6 +26,3 @@ class Day4(Day):
             i += 1
 
         return len(cardQueue)
-
-
-Day4(4).getResult()

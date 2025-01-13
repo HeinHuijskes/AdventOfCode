@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 from math import prod
 
 
@@ -29,6 +26,3 @@ class Solver(Day):
 
     def solvePartTwo(self, data):
         return self.solve(data, sum(data)//4)
-
-
-Solver(day=24).getResult(testOnly=False)

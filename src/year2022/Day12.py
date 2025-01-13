@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
@@ -95,6 +92,3 @@ class Solver(Day):
                 if length < best_a:
                     best_a = length
         return best_a
-
-
-Solver(day=12).getResult()

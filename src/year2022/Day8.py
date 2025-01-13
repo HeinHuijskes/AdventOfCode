@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
@@ -123,6 +120,3 @@ class Solver(Day):
     def solvePartTwo(self, data):
         scenic_grid = self.generateScenicScores(data)
         return self.findLargestScenicScore(scenic_grid)
-
-
-Solver(day=8).getResult()

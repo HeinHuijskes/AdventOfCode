@@ -1,10 +1,6 @@
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
 from math import log10
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
 
 
 class Day7(Day):
@@ -54,6 +50,3 @@ class Day7(Day):
             if test_value in options:
                 result += test_value
         return result
-
-
-Day7(7).getResult(testOnly=False)

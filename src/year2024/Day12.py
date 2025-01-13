@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day12(Day):
@@ -104,6 +100,3 @@ class Day12(Day):
                 perimeter = self.findCorners(region, max_x, max_y)
                 result += area * perimeter
         return result
-
-
-Day12(12).getResult(testOnly=False)

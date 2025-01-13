@@ -1,11 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
-class Day18(Day):
+class Solver(Day):
     neighbour_range = [-1, 0, 1]
     def parse(self, data):
         grid = algs.gridify(data, '.')
@@ -50,6 +46,3 @@ class Day18(Day):
             grid = self.updateGrid(grid)
             self.turnOnCorners(grid)
         return sum([sum(line) for line in grid])
-
-
-Day18(18).getResult(testOnly=False)

@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day18(Day):
@@ -51,6 +47,3 @@ class Day18(Day):
             grid[y][x] = False
             if not self.dijkstra(grid, 0, 0, dimension, dimension)[1]:
                 return x, y
-
-
-Day18(18).getResult(testOnly=False)

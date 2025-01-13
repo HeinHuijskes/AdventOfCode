@@ -3,8 +3,8 @@ from regex import regex, compile
 
 
 class Solver(Day):
-    testanswer1, testanswer2 = 2, 3
-    answer1, answer2 = 110, 242
+    test_answers = [2, 3]
+    answers = [110, 242]
 
     def parse(self, data):
         return data

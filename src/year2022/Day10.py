@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
@@ -51,6 +48,3 @@ class Solver(Day):
                 screen += self.result[h * width + w]
         print(screen)
         return ''
-
-
-Solver(day=10).getResult()

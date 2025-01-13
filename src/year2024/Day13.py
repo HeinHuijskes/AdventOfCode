@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day13(Day):
@@ -38,6 +34,3 @@ class Day13(Day):
 
     def solvePartTwo(self, data):
         return self.calculateTokens(data, add=10000000000000)
-
-
-Day13(13).getResult(testOnly=False)

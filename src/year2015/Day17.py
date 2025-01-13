@@ -1,11 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
-class Day17(Day):
+class Solver(Day):
     goal = 150
     def parse(self, data):
         containers = list(sorted([int(line) for line in data]))
@@ -77,6 +73,3 @@ class Day17(Day):
                 queue = new_queue
                 new_queue = []
         return len(result[round])
-
-
-Day17(17).getResult(testOnly=False)

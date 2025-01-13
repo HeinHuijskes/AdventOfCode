@@ -1,13 +1,10 @@
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
 import regex as re
 import math
 
-from PythonFramework.Day import Day
 
-
-class Day6(Day):
+class Solver(Day):
     def solvePartOne(self, data):
         times = [int(x) for x in data[0].split(':')[1].split(' ') if x != '']
         distances = [int(x) for x in data[1].split(':')[1].split(' ') if x != '']
@@ -32,6 +29,3 @@ class Day6(Day):
         x_1 = (-t - math.sqrt(t**2-4*d))/-2
         x_2 = (-t + math.sqrt(t**2-4*d))/-2
         return math.ceil(x_1) - math.ceil(x_2)
-
-
-Day6(6).getResult(testOnly=False)

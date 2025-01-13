@@ -1,11 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
-class Day9(Day):
+class Solver(Day):
     def parse(self, data):
         travels = {}
         for line in data:
@@ -41,6 +37,3 @@ class Day9(Day):
 
     def solvePartTwo(self, data):
         return self.checkDistance(data, part2=True)
-
-
-Day9(9).getResult(testOnly=False)

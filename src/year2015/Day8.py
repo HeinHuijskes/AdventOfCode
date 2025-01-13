@@ -1,11 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
-class Day8(Day):
+class Solver(Day):
     def parse(self, data):
         return data
 
@@ -34,6 +30,3 @@ class Day8(Day):
                 if char == '\\' or char == '"':
                     difference += 1
         return difference
-
-
-Day8(8).getResult(testOnly=False)

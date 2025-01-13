@@ -1,11 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
-class Day14(Day):
+class Solver(Day):
     def parse(self, data):
         speeds = []
         for line in data:
@@ -35,6 +31,3 @@ class Day14(Day):
                 if distances[j] == maximum:
                     results[j] += 1
         return max(results)
-
-
-Day14(14).getResult(testOnly=False)

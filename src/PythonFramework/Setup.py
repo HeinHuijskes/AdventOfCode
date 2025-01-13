@@ -76,4 +76,4 @@ def runDay(day=None, year=None, test=False, normal=True, testOnly=False):
     sys.modules[module_name] = module
     spec.loader.exec_module(module)
     solver: Day = module.Solver(day=day, year=year)
-    solver.getResult(test, normal, testOnly)
+    solver.getResults(test, normal, testOnly)

@@ -1,14 +1,10 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 from regex import regex as re
 from math import prod
 
 
-class Day15(Day):
+class Solver(Day):
     def parse(self, data):
         mapping = {}
         for line in data:
@@ -49,6 +45,3 @@ class Day15(Day):
 
     def solvePartTwo(self, data):
         return self.solve(data, part2=True)
-
-
-Day15(15).getResult(testOnly=False)

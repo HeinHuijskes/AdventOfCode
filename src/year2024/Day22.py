@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
 class Day22(Day):
@@ -53,6 +49,3 @@ class Day22(Day):
             if result > highest[0]:
                 highest = (result, sequence)
         return highest[0]
-
-
-Day22(22).getResult(testOnly=False)

@@ -1,17 +1,13 @@
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
 from functools import reduce
 from math import gcd
 
-from PythonFramework.Day import Day
 
-
-def lcm(n):
-    return reduce((lambda x, y: int(x * y / gcd(x, y))), n)
-
-
-class Day8(Day):
+class Solver(Day):
+    def lcm(n):
+        return reduce((lambda x, y: int(x * y / gcd(x, y))), n)
+    
     def solvePartOne(self, data):
         sequence = [0 if x == 'L' else 1 for x in data[0]]
         lookup = {}
@@ -46,7 +42,4 @@ class Day8(Day):
                         break
             cycles.append(steps)
 
-        return lcm(cycles)
-
-
-Day8(8).getResult()
+        return self.lcm(cycles)

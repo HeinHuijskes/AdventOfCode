@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Solver(Day):
@@ -40,6 +37,3 @@ class Solver(Day):
                 result.append(intersection + 58)
 
         return sum(result)
-
-
-Solver(day=3).getResult()

@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 class Solver(Day):
     def solvePartOne(self, data):
@@ -35,6 +32,3 @@ class Solver(Day):
         solution = calories[-1] + calories[-2] + calories[-3]
 
         return solution
-
-
-Solver(day=1).getResult()

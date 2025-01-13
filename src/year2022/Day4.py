@@ -1,8 +1,6 @@
-import re as regex
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
-from PythonFramework.Day import Day
+import re as regex
 
 
 class Solver(Day):
@@ -29,6 +27,3 @@ class Solver(Day):
             has_overlap = not (b < x or a > y)
             result.append(has_overlap)
         return sum(result)
-
-
-Solver(day=4).getResult()

@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day17(Day):
@@ -86,6 +82,3 @@ class Day17(Day):
             # Always append the lowest A last, so that it is looked at first
             for A in sorted(A_values, reverse=True):
                 queue.append((A*8, level+1))
-
-
-Day17(17).getResult(testOnly=False)

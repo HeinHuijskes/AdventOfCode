@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 from regex import regex
 
 
@@ -27,6 +24,3 @@ class Solver(Day):
 
     def solvePartTwo(self, data):
         return 'No part 2 solution yet'
-
-
-Solver(day=25).getResult(testOnly=False)

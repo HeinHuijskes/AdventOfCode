@@ -1,10 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
-class Day11(Day):
+class Solver(Day):
     monkeys = dict()
 
     def solvePartOne(self, data):
@@ -83,12 +80,9 @@ class Day11(Day):
             self.inspects += 1
             item = self.items[0]
             self.items = self.items[1:]
-            item = Day11().doOperation(self.operation, item)
+            item = Solver().doOperation(self.operation, item)
             item = item // self.divide
-            Day11().doTest(self, item)
+            Solver().doTest(self, item)
 
         def receiveItem(self, item):
             self.items.append(item)
-
-
-Day11(11).getResult()

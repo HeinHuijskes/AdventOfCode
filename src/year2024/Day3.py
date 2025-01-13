@@ -1,8 +1,6 @@
-import sys
-import re
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
-from PythonFramework.Day import Day
+import re
 
 
 class Day3(Day):
@@ -22,6 +20,3 @@ class Day3(Day):
             elif do:
                 numbers += [[int(y) for y in instruction[4:-1].split(',')]]
         return sum([nr[0]*nr[1] for nr in numbers])
-
-
-Day3(3).getResult()

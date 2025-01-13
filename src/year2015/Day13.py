@@ -1,11 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
+from src.PythonFramework.Day import Day
 
 
-class Day13(Day):
+class Solver(Day):
     def parse(self, data):
         people = {}
         for line in data:
@@ -46,6 +42,3 @@ class Day13(Day):
             data[person]['Hein'] = 0
             data['Hein'][person] = 0
         return self.solve(data)
-
-
-Day13(13).getResult(testOnly=False)

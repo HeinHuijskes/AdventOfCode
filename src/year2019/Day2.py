@@ -1,10 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
-class Day2(Day):
+class Solver(Day):
     def executeProgram(self, noun, verb, program):
         program[1] = noun
         program[2] = verb
@@ -27,5 +24,3 @@ class Day2(Day):
                 if self.executeProgram(i, j, program.copy()) == 19690720:
                     return 100 * i + j
 
-
-Day2(2).getResult()

@@ -1,13 +1,9 @@
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
 import hashlib
 
-from PythonFramework.Day import Day
-import PythonFramework.Algorithms as algs
-
-
 class Solver(Day):
+    answers = ['c6697b55', '8c35d1ab']
     hashes = []
     i = 0
     def parse(self, data):
@@ -43,6 +39,3 @@ class Solver(Day):
             self.getHash(data)
             self.addToPassword(self.hashes[-1], password)
         return ''.join(password)
-
-
-Solver(day=5).getResult(testOnly=False)

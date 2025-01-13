@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day19(Day):
@@ -59,6 +55,3 @@ class Day19(Day):
         for design in designs:
             result += self.isMoreValid(design, patterns)
         return result
-
-
-Day19(19).getResult(testOnly=False)

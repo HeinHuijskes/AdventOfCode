@@ -1,11 +1,9 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 from regex import regex
 
 
 class Solver(Day):
+    answers = [869, 1544]
     def parse(self, data):
         return [[int(x) for x in regex.findall('(\d+)', line)] for line in data]
 
@@ -25,6 +23,3 @@ class Solver(Day):
             largest = line.pop(line.index(max(line)))
             result += largest < sum(line)
         return result
-
-
-Solver(day=3).getResult(testOnly=False)

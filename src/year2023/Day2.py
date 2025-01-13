@@ -1,10 +1,7 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
-class Day2(Day):
+class Solver(Day):
     def solvePartOne(self, data):
         red, green, blue = 12, 13, 14
         total = 0
@@ -52,6 +49,3 @@ class Day2(Day):
                         blue = number
             total += red * green * blue
         return total
-
-
-Day2(2).getResult()

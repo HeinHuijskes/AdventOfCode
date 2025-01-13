@@ -1,7 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
+from src.PythonFramework.Day import Day
 
 
 class Day2(Day):
@@ -37,6 +34,3 @@ class Day2(Day):
                         break
             safe_reports += safe
         return safe_reports
-
-
-Day2(2).getResult()

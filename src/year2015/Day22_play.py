@@ -1,6 +1,3 @@
-import sys
-sys.path.append('../../src')
-
 from random import choice
 from Day22 import Spells, Entity, Player, Boss
 from time import sleep

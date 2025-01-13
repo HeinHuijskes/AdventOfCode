@@ -1,10 +1,6 @@
-import sys
-sys.path.append('../../src')
+from src.PythonFramework.Day import Day
 
 from math import log10, ceil
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
 
 
 class Day11(Day):
@@ -51,4 +47,4 @@ class Day11(Day):
         return self.multiplyStones(data, 75)
 
 
-Day11(11).getResult(testOnly=False)
+Day11(11).getResults(testOnly=False)

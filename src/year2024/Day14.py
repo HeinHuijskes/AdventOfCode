@@ -1,8 +1,4 @@
-import sys
-sys.path.append('../../src')
-
-from PythonFramework.Day import Day
-from PythonFramework.Algorithms import *
+from src.PythonFramework.Day import Day
 
 
 class Day14(Day):
@@ -60,6 +56,3 @@ class Day14(Day):
             if qscore < lowest_qscore:
                 lowest_qscore, lowest_i = qscore, i
         return lowest_i
-
-
-Day14(14).getResult(testOnly=False)
