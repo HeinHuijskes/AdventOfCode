@@ -219,8 +219,8 @@ def calculateSpeedYear(year=2024, iterations=1):
         if not os.path.exists(f'./src/year{year}/Day{day}.py'):
             continue
         speed, correct = calculateSpeedDay(day, year, iterations)
-        if correct:
-            results[day] = speed
+        # if correct:
+        results[day] = speed
     return results
 
 

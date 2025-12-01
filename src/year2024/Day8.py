@@ -68,6 +68,3 @@ class Day8(Day):
                             antinodes.add((x,y))
         # self.drawNodes(types, antinodes, (x_lim, y_lim))
         return len(antinodes)
-
-
-Day8(8).getResults(testOnly=False)

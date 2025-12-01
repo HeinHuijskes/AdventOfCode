@@ -52,6 +52,3 @@ class Day10(Day):
         for x, y in zeroes:
             result += len(self.recurseNeighbours(height_map, 0, x, y))
         return result
-
-
-Day10(10).getResults(testOnly=False)

@@ -8,6 +8,7 @@ class Day:
     total_time = 0
     test_answers = [None, None]
     answers = [None, None]
+    testOnly, test, normal = False, False, True
 
     def __init__(self, day=0, year=0) -> None:
         self.day = day
@@ -42,16 +43,16 @@ class Day:
         data = self.parse(open(data_path, 'r').read().split('\n')[:-1])
         return self.runAnswer(part, answer, func, data, test=test)
 
-    def getResults(self, test=False, normal=True, testOnly=False):
-        if testOnly:
-            test, normal = True, False
-        if test:
-            print(self.getResult(True, 1)[2])
-            print(self.getResult(True, 2)[2])
+    def getResults(self):
+        if self.testOnly:
+            self.test, self.normal = True, False
+        if self.test:
+            print(self.getResult(test=True, part=1)[2])
+            print(self.getResult(test=True, part=2)[2])
 
-        if normal:
-            print(self.getResult(False, 1)[2])
-            print(self.getResult(False, 2)[2])
+        if self.normal:
+            print(self.getResult(test=False, part=1)[2])
+            print(self.getResult(test=False, part=2)[2])
         print(f'Total time: {round(self.total_time/(10**9), 4)} sec')
 
     def parse(self, data):

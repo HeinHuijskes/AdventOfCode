@@ -119,6 +119,3 @@ class Day9(Day):
 
         # self.showString(data)
         return sum([i*x for i, x in enumerate(data) if x != -1])
-
-
-Day9(9).getResults(testOnly=False)

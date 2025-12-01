@@ -45,6 +45,3 @@ class Day11(Day):
 
     def solvePartTwo(self, data):
         return self.multiplyStones(data, 75)
-
-
-Day11(11).getResults(testOnly=False)
