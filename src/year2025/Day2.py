@@ -24,20 +24,11 @@ class Solver(Day):
         maximum = len(number)//2
         # Consider chunks of length i of a number
         for i in range(1, maximum+1):
-            chunk = number[0:i]
-
-            # Check that the number is divisable into even chunks
-            hasPotential = len(number) % i == 0
-            if not hasPotential:
+            chunks = len(number) // i
+            if not chunks * i == len(number):
                 continue
-
-            # Loop over all chunks in the number and check if they are equal
-            for j in range(i, len(number), i):
-                if chunk != number[j:j+i]:
-                    hasPotential = False
-                    break
-
-            if hasPotential:
+            chunk = number[0:i]
+            if chunk*chunks == number:
                 return True
         return False
 
