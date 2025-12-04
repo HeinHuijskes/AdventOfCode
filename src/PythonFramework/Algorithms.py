@@ -71,3 +71,11 @@ def dijkstra(grid: list[list], x: int, y: int, gx: int, gy: int) -> list[tuple[i
         (px, py, score) = nodes[py][px]
 
     return path
+
+def padGrid(grid, padding='.'):
+    return [[grid[y-1][x-1] 
+                if (len(grid[0])+1 > x > 0 and len(grid)+1 > y > 0) 
+                else padding 
+                for x in range(len(grid[0])+2)] 
+                for y in range(len(grid)+2)]
+
