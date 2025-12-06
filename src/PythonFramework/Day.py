@@ -1,6 +1,7 @@
 import src.PythonFramework.Algorithms as alg
+from src.PythonFramework.GUI.GUIs import GUI_GETTER
+from threading import Thread
 import time
-import os
 
 class Day:
     day = 0
@@ -9,10 +10,16 @@ class Day:
     test_answers = [None, None]
     answers = [None, None]
     testOnly, test, normal = False, False, True
+    GUI_type: str | None = None
 
     def __init__(self, day=0, year=0) -> None:
         self.day = day
         self.year = year
+
+        if self.GUI_type != None:
+            self.GUI = GUI_GETTER().getGui(self.GUI_type)
+            self.gui_thread = Thread(target=self.GUI.runGUI)
+            self.gui_thread.start()
 
     def runAnswer(self, part, correct_answer, solver, input, test=False):
         self.start_time = time.perf_counter_ns()
@@ -54,6 +61,9 @@ class Day:
             print(self.getResult(test=False, part=1)[2])
             print(self.getResult(test=False, part=2)[2])
         print(f'Total time: {round(self.total_time/(10**9), 4)} sec')
+        if self.GUI_type != None:
+            self.GUI.run = False
+            self.gui_thread.join()
 
     def parse(self, data):
         return data
@@ -66,3 +76,7 @@ class Day:
 
     def solvePartTwo(self, data):
         return None
+
+    def visualise(self, value):
+        self.GUI.update(value)
+        return

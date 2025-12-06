@@ -4,3 +4,4 @@ __pycache__/
 stats/
 src/data/
 src/GUI/
+src/GUI_Framework/
