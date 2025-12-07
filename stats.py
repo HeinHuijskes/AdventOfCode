@@ -17,7 +17,7 @@ def run():
 def calculate():
     # results = calculateAllSpeeds(1)
     results = {}
-    for year in [2015]:
+    for year in [2025]:
         results[year] = {}
         # for day in [1, 2, 3, 4, 5, 6, 7]:  # range(1, 17):
             # results[year][day] = calculateSpeedDay(day, year)
