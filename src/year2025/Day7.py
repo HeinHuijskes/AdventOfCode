@@ -8,7 +8,7 @@ class Solver(Day):
     test = True
 
     def solve(self, data):
-        start, lines = data[0].index('S'), [[char == '^' for char in line] for line in data]
+        start, lines = data[0].index('S'), [[char == '^' for char in data[i]] for i in range(0, len(data), 2)]
         beams = [[1 if i == start else 0 for i in range(len(lines[0]))]]
         splits = 0
         for line in lines[1:]:
